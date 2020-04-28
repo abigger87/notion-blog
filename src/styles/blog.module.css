@@ -36,6 +36,7 @@
   border-radius: 5px;
   transition: all 0.2s ease 0s;
 }
+
 .escapePreview:hover {
   background-color: white;
   color: black;
@@ -48,6 +49,7 @@
   align-items: center;
   justify-content: flex-start;
 }
+
 .draftBadge {
   border-radius: 16px;
   background-color: black;
@@ -60,6 +62,10 @@
 
 .noPosts {
   text-align: center;
+}
+
+.cursorpointer {
+  cursor: pointer;
 }
 
 .postPreview {
