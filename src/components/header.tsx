@@ -19,14 +19,9 @@ export default ({ titlePre = '' }) => {
   return (
     <header className={styles.header}>
       <Head>
-        <title>
-          {titlePre ? `${titlePre} |` : ''} Andreas Bigger Notion Blog
-        </title>
-        <meta
-          name="description"
-          content="An example Next.js site using Notion for the blog"
-        />
-        <meta name="og:title" content="My Notion Blog" />
+        <title>{titlePre ? `${titlePre} |` : ''} Andreas Bigger</title>
+        <meta name="description" content="Andreas Bigger Notion Blog" />
+        <meta name="og:title" content="Andreas Bigger Notion Blog" />
         <meta property="og:image" content={ogImageUrl} />
         <meta name="twitter:site" content="@abigger87" />
         <meta name="twitter:card" content="summary_large_image" />
