@@ -5,6 +5,21 @@
   height: auto;
 }
 
+.absolutecenter img {
+  margin: auto;
+  align-self: center;
+}
+
+.absolutecenter {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5em 0;
+  z-index: -999;
+  display: flex;
+}
+
 .layout h1,
 .layout h2 {
   text-align: center;

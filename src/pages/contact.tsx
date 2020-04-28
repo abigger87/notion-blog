@@ -13,22 +13,22 @@ const contacts = [
   {
     Comp: Twitter,
     alt: 'twitter icon',
-    link: 'https://twitter.com/_ijjk',
+    link: 'https://twitter.com/abigger87',
   },
   {
     Comp: GitHub,
     alt: 'github icon',
-    link: 'https://github.com/ijjk',
+    link: 'https://github.com/abigger87',
   },
   {
     Comp: LinkedIn,
     alt: 'linkedin icon',
-    link: 'https://www.linkedin.com/in/jj-kasper-0b5392166/',
+    link: 'https://www.linkedin.com/in/andreasbigger/',
   },
   {
     Comp: Envelope,
     alt: 'envelope icon',
-    link: 'mailto:jj@jjsweb.site?subject=Notion Blog',
+    link: "mailto:bigger@usc.edu?subject=Andreas Bigger's Notion Blog",
   },
 ]
 
@@ -37,14 +37,14 @@ export default () => (
     <Header titlePre="Contact" />
     <div className={sharedStyles.layout}>
       <div className={contactStyles.avatar}>
-        <img src="/avatar.png" alt="avatar with letters JJ" height={60} />
+        <img src="/avatar.png" alt="AB Castle Avatar" height="200vw" />
       </div>
 
-      <h1 style={{ marginTop: 0 }}>Contact</h1>
+      <h2 style={{ marginTop: 0 }}>Contact</h2>
 
       <div className={contactStyles.name}>
-        JJ Kasper - Next.js Engineer @{' '}
-        <ExtLink href="https://zeit.co">ZEIT</ExtLink>
+        Andreas Bigger - Viterbi Fellow @{' '}
+        <ExtLink href="https://usc.edu">USC</ExtLink>
       </div>
 
       <div className={contactStyles.links}>

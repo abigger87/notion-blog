@@ -5,7 +5,7 @@ export default ({ Component, pageProps }) => (
   <>
     <Component {...pageProps} />
 
-    <footer>
+    {/*<footer>
       <span>Deploy your own!</span>
       <ExtLink href="https://zeit.co/new/project?template=https://github.com/ijjk/notion-blog/tree/master">
         <img
@@ -21,6 +21,6 @@ export default ({ Component, pageProps }) => (
           view source
         </ExtLink>
       </span>
-    </footer>
+    </footer>*/}
   </>
 )
