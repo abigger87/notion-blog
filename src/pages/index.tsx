@@ -10,7 +10,11 @@ import {
 export default function Home({ file }) {
   const formOptions = {
     label: 'Home Page',
-    fields: [{ name: 'logo', component: 'text' }],
+    fields: [
+      { name: 'Center Logo', component: 'text' },
+      { name: 'Contact', component: 'text' },
+      { name: 'Source', component: 'text' },
+    ],
   }
 
   // * Registers a JSON Tina Form
