@@ -1,4 +1,5 @@
 const fs = require('fs')
+require('dotenv').config()
 const path = require('path')
 const {
   NOTION_TOKEN,
@@ -42,6 +43,11 @@ if (!BLOG_INDEX_ID) {
 }
 
 module.exports = {
+  env: {
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
+    BASE_BRANCH: process.env.BASE_BRANCH,
+  },
   target: 'experimental-serverless-trace',
 
   webpack(cfg, { dev, isServer }) {
