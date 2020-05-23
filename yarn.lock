@@ -1237,10 +1237,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.4.tgz#4cfd90175a200ee9b02bd6b1cd19bc349741607e"
   integrity sha512-Lue/mlp2egZJoHXZr4LndxDAd7i/7SQYhV0EjWfb/a4/OZ6tuVwMCVPiwkU5nsEipxEf7hmkSU7Em5VQ8P5NGA==
 
-"@types/node@^13.13.4":
-  version "13.13.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.4.tgz#1581d6c16e3d4803eb079c87d4ac893ee7501c2c"
-  integrity sha512-x26ur3dSXgv5AwKS0lNfbjpCakGIduWU1DU91Zz58ONRWrIKGunmZBNv4P7N+e27sJkiGDsw/3fT4AtsqQBrBA==
+"@types/node@^14.0.5":
+  version "14.0.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.5.tgz#3d03acd3b3414cf67faf999aed11682ed121f22b"
+  integrity sha512-90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -6184,6 +6184,11 @@ react-final-form@^6.3.0:
   dependencies:
     "@babel/runtime" "^7.9.2"
     ts-essentials "^6.0.3"
+
+react-hotjar@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-hotjar/-/react-hotjar-2.2.0.tgz#c520b3ab8dc7f0c9ba468a8232ac326924a07331"
+  integrity sha512-HNJ9G5DT3o0jxNQrR4wyL/oVeWd6Rt+oATvxlfk6I1pFVYumNeXu3FoOud9uiblJJyiqXL5bKyKn6SjLvPczQw==
 
 react-is@16.8.6:
   version "16.8.6"

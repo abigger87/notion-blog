@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import { hotjar } from 'react-hotjar'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -26,7 +27,18 @@ export default class MyDocument extends Document {
       sheet.seal()
     }
   }
+
   render() {
+    if (typeof window !== 'undefined') {
+      // * Load Hotjar
+      hotjar.initialize(
+        parseInt(
+          process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
+        ),
+        6
+      )
+    }
+
     return (
       <Html lang="en">
         <Head />

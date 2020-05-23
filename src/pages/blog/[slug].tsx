@@ -35,9 +35,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const postData = await getPageData(post.id)
   post.content = postData.blocks
 
-  // * Load Hotjar
-  hotjar.initialize(process.env.HOTJAR_ID, 6)
-
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
     const { type, properties } = value
@@ -115,6 +112,14 @@ const RenderPost = ({ post, redirect, preview }) => {
         document.querySelector('body').appendChild(script)
       }
     }
+
+    // * Load Hotjar
+    hotjar.initialize(
+      parseInt(
+        process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
+      ),
+      6
+    )
   }, [])
   useEffect(() => {
     if (redirect && !post) {
