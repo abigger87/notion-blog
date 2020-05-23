@@ -43,13 +43,8 @@ export default class Site extends App {
   }
 
   componentDidMount() {
-    // * Load Hotjar
-    hotjar.initialize(
-      parseInt(
-        process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
-      ),
-      6
-    )
+    // * Load Hotjar (Screw it... I'm hardcoding the hotjar id)
+    hotjar.initialize(1824981, 6)
   }
 
   render() {
