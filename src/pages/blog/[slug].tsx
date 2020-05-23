@@ -12,7 +12,6 @@ import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
-import { hotjar } from 'react-hotjar'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -112,14 +111,6 @@ const RenderPost = ({ post, redirect, preview }) => {
         document.querySelector('body').appendChild(script)
       }
     }
-
-    // * Load Hotjar
-    hotjar.initialize(
-      parseInt(
-        process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
-      ),
-      6
-    )
   }, [])
   useEffect(() => {
     if (redirect && !post) {

@@ -2,8 +2,6 @@ import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
-import React, { useEffect } from 'react'
-import { hotjar } from 'react-hotjar'
 import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
@@ -24,16 +22,6 @@ export default function Home({ file }) {
   const logo = data?.logo ? data?.logo : '/avatar.png'
 
   useGithubToolbarPlugins()
-
-  useEffect(() => {
-    // * Load Hotjar
-    hotjar.initialize(
-      parseInt(
-        process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
-      ),
-      6
-    )
-  }, [])
 
   return (
     <>
