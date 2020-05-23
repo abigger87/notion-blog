@@ -12,6 +12,7 @@ import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import { hotjar } from 'react-hotjar'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -33,6 +34,9 @@ export async function getStaticProps({ params: { slug }, preview }) {
   }
   const postData = await getPageData(post.id)
   post.content = postData.blocks
+
+  // * Load Hotjar
+  hotjar.initialize(process.env.HOTJAR_ID, 6)
 
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
