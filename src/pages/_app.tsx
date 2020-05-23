@@ -7,6 +7,7 @@ import {
   GithubClient,
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
+import { hotjar } from 'react-hotjar'
 
 export default class Site extends App {
   cms: TinaCMS
@@ -39,6 +40,16 @@ export default class Site extends App {
         hidden: !props.pageProps.preview,
       },
     })
+  }
+
+  componentDidMount() {
+    // * Load Hotjar
+    hotjar.initialize(
+      parseInt(
+        process.env.HOTJAR_ID !== undefined ? process.env.HOTJAR_ID : ''
+      ),
+      6
+    )
   }
 
   render() {
