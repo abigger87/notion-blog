@@ -4,6 +4,7 @@ import ExtLink from '../components/ext-link'
 import sharedStyles from '../styles/shared.module.css'
 import contactStyles from '../styles/contact.module.css'
 
+import GitHubCalendar from 'react-github-calendar'
 import GitHub from '../components/svgs/github'
 import Twitter from '../components/svgs/twitter'
 import Envelope from '../components/svgs/envelope'
@@ -34,18 +35,29 @@ const contacts = [
 
 export default () => (
   <>
-    <Header titlePre="Contact" />
+    <Header titlePre="About" />
     <div className={sharedStyles.layout}>
-      <div className={contactStyles.avatar}>
+      <div className={contactStyles.avatar} style={{ display: 'none' }}>
         <img src="/avatar.png" alt="AB Castle Avatar" height="200vw" />
       </div>
 
-      <h2 style={{ marginTop: 0 }}>Contact</h2>
+      <h2 style={{ marginTop: 0 }}>About</h2>
 
       <div className={contactStyles.name}>
         Andreas Bigger - Viterbi Fellow @{' '}
         <ExtLink href="https://usc.edu">USC</ExtLink>
       </div>
+
+      <GitHubCalendar
+        username="abigger87"
+        style={{
+          textAlign: 'center',
+          marginLeft: '10vw',
+          marginRight: '10vw',
+          marginTop: '20px',
+          marginBottom: '20px',
+        }}
+      />
 
       <div className={contactStyles.links}>
         {contacts.map(({ Comp, link, alt }) => {
