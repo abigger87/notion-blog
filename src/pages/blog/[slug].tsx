@@ -8,10 +8,15 @@ import ReactJSXParser from '@zeit/react-jsx-parser'
 import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
-import React, { CSSProperties, useEffect } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import useSWR from 'swr'
+import incrementFetcher from '../../lib/incrementFetcher'
+import fetcher from '../../lib/fetcher'
+import format from 'comma-number'
+import ViewCounter from '../../components/ViewCounter'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -63,6 +68,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
     props: {
       post,
       preview: preview || false,
+      slug,
     },
     revalidate: 10,
   }
@@ -83,8 +89,9 @@ export async function getStaticPaths() {
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, redirect, preview }) => {
+const RenderPost = ({ post, redirect, preview, slug }) => {
   const router = useRouter()
+  const [firstView, setFirstView] = useState(true)
 
   let listTagName: string | null = null
   let listLastId: string | null = null
@@ -96,6 +103,17 @@ const RenderPost = ({ post, redirect, preview }) => {
       children: React.ReactFragment
     }
   } = {}
+
+  let views
+
+  if (firstView) {
+    setFirstView(false)
+    const { data } = useSWR(`/api/increment-views?id=${slug}`, fetcher)
+    views = data?.total
+  } else {
+    const { data } = useSWR(`/api/page-views?id=${slug}`, fetcher)
+    views = data?.total
+  }
 
   useEffect(() => {
     const twitterSrc = 'https://platform.twitter.com/widgets.js'
@@ -158,6 +176,7 @@ const RenderPost = ({ post, redirect, preview }) => {
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
         )}
+        <>{views ? format(views) : '–––'} views</>
 
         <hr />
 

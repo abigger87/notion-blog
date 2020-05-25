@@ -12,6 +12,9 @@ import {
 import { textBlock } from '../../lib/notion/renderers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
+import fetcher from '../../lib/fetcher'
+import format from 'comma-number'
+import useSWR from 'swr'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -29,6 +32,7 @@ export async function getStaticProps({ preview }) {
       for (const author of post.Authors) {
         authorsToGet.add(author)
       }
+      post['slug'] = slug
       return post
     })
     .filter(Boolean)
@@ -49,6 +53,13 @@ export async function getStaticProps({ preview }) {
 }
 
 export default ({ posts = [], preview }) => {
+  let views = []
+
+  posts.forEach((value, index) => {
+    const { data } = useSWR(`/api/page-views?id=${posts[index].slug}`, fetcher)
+    views.push(data?.total)
+  })
+
   return (
     <>
       <Header titlePre="Blog" />
@@ -67,7 +78,7 @@ export default ({ posts = [], preview }) => {
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
-        {posts.map(post => {
+        {posts.map((post, index) => {
           return (
             <div className={blogStyles.postPreview} key={post.Slug}>
               <h3 className={blogStyles.cursorpointer}>
@@ -86,6 +97,12 @@ export default ({ posts = [], preview }) => {
               {post.Date && (
                 <div className="posted">Posted: {getDateStr(post.Date)}</div>
               )}
+              <>
+                {views.length > index && views[index]
+                  ? format(views[index])
+                  : '–––'}{' '}
+                views
+              </>
               <p>
                 {(!post.preview || post.preview.length === 0) &&
                   'No preview available'}

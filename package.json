@@ -14,7 +14,10 @@
   },
   "dependencies": {
     "@zeit/react-jsx-parser": "^2.0.0",
+    "comma-number": "^2.0.1",
     "dotenv": "^8.2.0",
+    "firebase": "^7.14.5",
+    "firebase-admin": "^8.12.1",
     "github-slugger": "^1.2.1",
     "next": "^9.3.2",
     "next-tinacms-github": "^0.1.0",
@@ -24,6 +27,7 @@
     "react-hotjar": "^2.2.0",
     "react-tinacms-github": "^0.2.0",
     "styled-components": "^5.1.0",
+    "swr": "^0.2.2",
     "tinacms": "^0.19.1"
   },
   "devDependencies": {
