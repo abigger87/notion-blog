@@ -5,6 +5,7 @@ const {
   NOTION_TOKEN,
   BLOG_INDEX_ID,
 } = require('./src/lib/notion/server-constants')
+const withPWA = require('next-pwa')
 
 try {
   fs.unlinkSync(path.resolve('.blog_index_data'))
@@ -42,7 +43,7 @@ if (!BLOG_INDEX_ID) {
   )
 }
 
-module.exports = {
+module.exports = withPWA({
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     REPO_FULL_NAME: process.env.REPO_FULL_NAME,
@@ -65,4 +66,7 @@ module.exports = {
     }
     return cfg
   },
-}
+  pwa: {
+    dest: 'public',
+  },
+})
