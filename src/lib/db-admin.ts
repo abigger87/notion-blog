@@ -26,3 +26,4 @@ try {
 }
 
 module.exports = admin.database()
+export default admin.database()
