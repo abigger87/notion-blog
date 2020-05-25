@@ -20,6 +20,7 @@
     "firebase-admin": "^8.12.1",
     "github-slugger": "^1.2.1",
     "next": "^9.3.2",
+    "next-pwa": "^2.4.1",
     "next-tinacms-github": "^0.1.0",
     "prismjs": "^1.17.1",
     "react": "16.12.0",
