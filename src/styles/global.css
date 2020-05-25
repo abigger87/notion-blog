@@ -64,6 +64,12 @@ body {
   overflow-x: hidden;
 }
 
+/* * Override  React-GitHub-Calendar border */
+
+.react-github-calendar__title {
+  border-bottom: none !important;
+}
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: #000;
