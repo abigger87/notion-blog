@@ -56,7 +56,10 @@ export default ({ posts = [], preview }) => {
   let views = []
 
   posts.forEach((value, index) => {
-    const { data } = useSWR(`/api/page-views?id=${posts[index].slug}`, fetcher)
+    const { data } = useSWR(
+      `/api/page-views?id=${posts[index].Page.replace(/\s/g, '-')}`,
+      fetcher
+    )
     views.push(data?.total)
   })
 
@@ -80,9 +83,15 @@ export default ({ posts = [], preview }) => {
         )}
         {posts.map((post, index) => {
           return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
+            <div
+              className={blogStyles.postPreview}
+              key={post.Page.replace(/\s/g, '-')}
+            >
               <h3 className={blogStyles.cursorpointer}>
-                <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                <Link
+                  href="/blog/[slug]"
+                  as={getBlogLink(post.Page.replace(/\s/g, '-'))}
+                >
                   <div className={blogStyles.titleContainer}>
                     {!post.Published && (
                       <span className={blogStyles.draftBadge}>Draft</span>

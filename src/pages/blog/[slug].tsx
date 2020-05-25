@@ -13,16 +13,20 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
 import useSWR from 'swr'
-import incrementFetcher from '../../lib/incrementFetcher'
 import fetcher from '../../lib/fetcher'
 import format from 'comma-number'
-import ViewCounter from '../../components/ViewCounter'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
-  const post = postsTable[slug]
+  let post
+  //const post = postsTable[slug]
+  Object.values(postsTable).forEach((o: any) => {
+    if (o.Page.replace(/\s/g, '-') === slug) {
+      post = o
+    }
+  })
 
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /blog
@@ -107,11 +111,19 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
   let views
 
   if (firstView) {
-    setFirstView(false)
-    const { data } = useSWR(`/api/increment-views?id=${slug}`, fetcher)
+    const { data } = useSWR(
+      `/api/increment-views?id=${post?.Page.replace(/\s/g, '-')}`,
+      fetcher
+    )
+    if (data) {
+      setFirstView(false)
+    }
     views = data?.total
   } else {
-    const { data } = useSWR(`/api/page-views?id=${slug}`, fetcher)
+    const { data } = useSWR(
+      `/api/page-views?id=${post?.Page.replace(/\s/g, '-')}`,
+      fetcher
+    )
     views = data?.total
   }
 
