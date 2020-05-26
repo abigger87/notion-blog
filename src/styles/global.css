@@ -64,6 +64,13 @@ body {
   overflow-x: hidden;
 }
 
+/* * Embedded Charts Class to add basic layout */
+
+.embedded {
+  text-align: center;
+  margin: 20px 10vw;
+}
+
 /* * Override  React-GitHub-Calendar border */
 
 .react-github-calendar__title {

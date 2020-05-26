@@ -1,6 +1,13 @@
 {
   "name": "notion-blog",
-  "version": "0.1.0",
+  "description": "My personal website.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Andreas Bigger",
+    "email": "bigger@usc.edu",
+    "url": "https://andreasbigger.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "start": "next start",
@@ -13,14 +20,20 @@
     }
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@mapbox/rehype-prism": "^0.4.0",
     "@zeit/react-jsx-parser": "^2.0.0",
     "comma-number": "^2.0.1",
     "dotenv": "^8.2.0",
+    "emotion-theming": "^10.0.27",
     "firebase": "^7.14.5",
     "firebase-admin": "^8.12.1",
     "github-slugger": "^1.2.1",
     "next": "^9.3.2",
     "next-pwa": "^2.4.1",
+    "next-seo": "^4.5.0",
     "next-tinacms-github": "^0.1.0",
     "prismjs": "^1.17.1",
     "react": "16.12.0",

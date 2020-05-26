@@ -9,6 +9,7 @@ import GitHub from '../components/svgs/github'
 import Twitter from '../components/svgs/twitter'
 import Envelope from '../components/svgs/envelope'
 import LinkedIn from '../components/svgs/linkedin'
+import { ThirtyDayChart, CodingLanguages } from '../components/svgs'
 
 const contacts = [
   {
@@ -48,16 +49,17 @@ export default () => (
         <ExtLink href="https://usc.edu">USC</ExtLink>
       </div>
 
-      <GitHubCalendar
-        username="abigger87"
-        style={{
-          textAlign: 'center',
-          marginLeft: '10vw',
-          marginRight: '10vw',
-          marginTop: '20px',
-          marginBottom: '20px',
-        }}
-      />
+      <div className="embedded">
+        <GitHubCalendar username="abigger87" />
+      </div>
+
+      {/*
+       * #222f38 - Dark Background Color
+       * #FFFFFF - Light Background Color
+       */}
+      <ThirtyDayChart />
+
+      <CodingLanguages />
 
       <div className={contactStyles.links}>
         {contacts.map(({ Comp, link, alt }) => {
