@@ -7,12 +7,11 @@ import fetcher from '../../lib/fetcher'
 
 import MetricCard from './Card'
 
-const YouTube = () => {
-  const { data } = useSWR('/api/youtube', fetcher)
+const YouTube = ({ link }: { link: string }) => {
+  const { data: swrData } = useSWR(`/api/youtube?link=${link}`, fetcher)
 
-  const subscriberCount = format(data?.subscriberCount)
-  const viewCount = format(data?.viewCount)
-  const link = 'https://www.youtube.com/channel/UCDhrfc_90_2gr4RjgCLiV8A'
+  const subscriberCount = format(swrData?.subscriberCount)
+  const viewCount = format(swrData?.viewCount)
 
   return (
     <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>

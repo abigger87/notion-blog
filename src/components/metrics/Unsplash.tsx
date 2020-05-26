@@ -7,12 +7,11 @@ import fetcher from '../../lib/fetcher'
 
 import MetricCard from './Card'
 
-const Unsplash = () => {
+const Unsplash = ({ link }: { link: string }) => {
   const { data } = useSWR('/api/unsplash', fetcher)
 
   const downloads = format(data?.downloads)
   const views = format(data?.views)
-  const link = 'https://unsplash.com/@abigger87'
 
   return (
     <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>

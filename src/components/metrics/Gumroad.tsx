@@ -6,11 +6,10 @@ import fetcher from '../../lib/fetcher'
 
 import MetricCard from './Card'
 
-const Gumroad = () => {
+const Gumroad = ({ link }: { link: string }) => {
   const { data } = useSWR('/api/gumroad', fetcher)
 
   const sales = format(data?.sales)
-  const link = 'https://gumroad.com/abigger87'
 
   return (
     <MetricCard

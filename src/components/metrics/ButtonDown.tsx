@@ -6,11 +6,10 @@ import fetcher from '../../lib/fetcher'
 
 import MetricCard from './Card'
 
-const Buttondown = () => {
+const Buttondown = ({ link }: { link: string }) => {
   const { data } = useSWR('/api/subscribers', fetcher)
 
   const subscriberCount = format(data?.count)
-  const link = 'https://buttondown.email/andreasbigger'
 
   return (
     <MetricCard

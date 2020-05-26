@@ -9,6 +9,13 @@ import {
   SimpleGrid,
 } from '@chakra-ui/core'
 
+import { GetStaticProps } from 'next'
+import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+import {
+  useGithubJsonForm,
+  useGithubToolbarPlugins,
+} from 'react-tinacms-github'
+
 import { Header } from '../components'
 import {
   Analytics,
@@ -29,12 +36,26 @@ interface color {
   toggleColorMode: any
 }
 
-const Dashboard = () => {
+const Dashboard = ({ file }) => {
   const { colorMode }: color = useColorMode()
   const secondaryTextColor = {
     light: 'gray.700',
     dark: 'gray.400',
   }
+
+  const formOptions = {
+    label: 'Dashboard',
+    fields: [
+      { name: 'YouTube Channel', component: 'text' },
+      { name: 'Contact', component: 'text' },
+      { name: 'Source', component: 'text' },
+    ],
+  }
+
+  // * Registers a JSON Tina Form
+  const [data, form] = useGithubJsonForm(file, formOptions)
+
+  useGithubToolbarPlugins()
 
   return (
     <>
@@ -88,15 +109,15 @@ const Dashboard = () => {
           maxWidth="700px"
           mt={8}
         >
-          <Unsplash />
-          <YouTube />
+          <Unsplash link={data?.unsplash ? data?.unsplash : ''} />
+          <YouTube link={data?.youtube ? data?.youtube : ''} />
           <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>
-            <Analytics />
-            <GitHub />
+            <Analytics link={data?.analytics ? data?.analytics : ''} />
+            <GitHub link={data?.github ? data?.github : ''} />
           </SimpleGrid>
           <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>
-            <Gumroad />
-            <Buttondown />
+            <Gumroad link={data?.gumroad ? data?.gumroad : ''} />
+            <Buttondown link={data?.buttondown ? data?.buttondown : ''} />
           </SimpleGrid>
         </Flex>
       </Stack>
@@ -105,3 +126,30 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+
+/**
+ * Fetch data with getStaticProps based on 'preview' mode
+ */
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
+  if (preview) {
+    return getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: 'content/metrics.json',
+      parse: parseJson,
+    })
+  }
+  return {
+    props: {
+      sourceProvider: null,
+      error: null,
+      preview: false,
+      file: {
+        fileRelativePath: 'content/metrics.json',
+        data: (await import('../content/metrics.json')).default,
+      },
+    },
+  }
+}

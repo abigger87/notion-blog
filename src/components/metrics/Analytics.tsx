@@ -6,11 +6,10 @@ import fetcher from '../../lib/fetcher'
 
 import MetricCard from './Card'
 
-const Analytics = () => {
+const Analytics = ({ link }: { link: string }) => {
   const { data } = useSWR('/api/page-views', fetcher)
 
   const pageViews = format(data?.total)
-  const link = 'https://andreasbigger.com'
 
   return <MetricCard header="All-Time Views" link={link} metric={pageViews} />
 }
