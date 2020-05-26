@@ -1,5 +1,4 @@
-import Header from '../components/header'
-import ExtLink from '../components/ext-link'
+import { Header, ExtLink } from '../components'
 
 import sharedStyles from '../styles/shared.module.css'
 import contactStyles from '../styles/contact.module.css'
@@ -10,6 +9,7 @@ import Twitter from '../components/svgs/twitter'
 import Envelope from '../components/svgs/envelope'
 import LinkedIn from '../components/svgs/linkedin'
 import { ThirtyDayChart, CodingLanguages } from '../components/svgs'
+import { useColorMode } from '@chakra-ui/core'
 
 const contacts = [
   {
@@ -34,42 +34,51 @@ const contacts = [
   },
 ]
 
-export default () => (
-  <>
-    <Header titlePre="About" />
-    <div className={sharedStyles.layout}>
-      <div className={contactStyles.avatar} style={{ display: 'none' }}>
-        <img src="/avatar.png" alt="AB Castle Avatar" height="200vw" />
+interface color {
+  colorMode: 'light' | 'dark'
+  toggleColorMode: any
+}
+
+export default () => {
+  const { colorMode, toggleColorMode }: color = useColorMode()
+
+  return (
+    <>
+      <Header titlePre="About" />
+      <div className={sharedStyles.layout}>
+        <div className={contactStyles.avatar} style={{ display: 'none' }}>
+          <img src="/avatar.png" alt="AB Castle Avatar" height="200vw" />
+        </div>
+
+        <h2 style={{ marginTop: 0 }}>About</h2>
+
+        <div className={contactStyles.name}>
+          Andreas Bigger - Viterbi Fellow @{' '}
+          <ExtLink href="https://usc.edu">USC</ExtLink>
+        </div>
+
+        <div className="embedded">
+          <GitHubCalendar username="abigger87" />
+        </div>
+
+        {/*
+         * #222f38 - Dark Background Color
+         * #FFFFFF - Light Background Color
+         */}
+        <ThirtyDayChart />
+
+        <CodingLanguages />
+
+        <div className={contactStyles.links}>
+          {contacts.map(({ Comp, link, alt }) => {
+            return (
+              <ExtLink key={link} href={link} aria-label={alt}>
+                <Comp height={32} />
+              </ExtLink>
+            )
+          })}
+        </div>
       </div>
-
-      <h2 style={{ marginTop: 0 }}>About</h2>
-
-      <div className={contactStyles.name}>
-        Andreas Bigger - Viterbi Fellow @{' '}
-        <ExtLink href="https://usc.edu">USC</ExtLink>
-      </div>
-
-      <div className="embedded">
-        <GitHubCalendar username="abigger87" />
-      </div>
-
-      {/*
-       * #222f38 - Dark Background Color
-       * #FFFFFF - Light Background Color
-       */}
-      <ThirtyDayChart />
-
-      <CodingLanguages />
-
-      <div className={contactStyles.links}>
-        {contacts.map(({ Comp, link, alt }) => {
-          return (
-            <ExtLink key={link} href={link} aria-label={alt}>
-              <Comp height={32} />
-            </ExtLink>
-          )
-        })}
-      </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
