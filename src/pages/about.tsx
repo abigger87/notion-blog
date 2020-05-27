@@ -1,15 +1,18 @@
-import { Header, ExtLink } from '../components'
+import { Header, ExtLink, Subscribe } from '../components'
+import {
+  GitHub,
+  Twitter,
+  Envelope,
+  LinkedIn,
+  ThirtyDayChart,
+  CodingLanguages,
+} from '../components/svgs'
 
 import sharedStyles from '../styles/shared.module.css'
 import contactStyles from '../styles/contact.module.css'
 
 import GitHubCalendar from 'react-github-calendar'
-import GitHub from '../components/svgs/github'
-import Twitter from '../components/svgs/twitter'
-import Envelope from '../components/svgs/envelope'
-import LinkedIn from '../components/svgs/linkedin'
-import { ThirtyDayChart, CodingLanguages } from '../components/svgs'
-import { useColorMode } from '@chakra-ui/core'
+import { Text, Heading, Stack, useColorMode } from '@chakra-ui/core'
 
 const contacts = [
   {
@@ -45,26 +48,29 @@ export default () => {
   return (
     <>
       <Header titlePre="About" />
-      <div className={sharedStyles.layout}>
-        <div className={contactStyles.avatar} style={{ display: 'none' }}>
-          <img src="/avatar.png" alt="AB Castle Avatar" height="200vw" />
-        </div>
+      <Stack
+        as="main"
+        spacing={8}
+        justifyContent="center"
+        alignItems="flex-start"
+        m="0 auto 4rem auto"
+        maxWidth="700px"
+      >
+        <Heading as="h2" size="lg">
+          About
+        </Heading>
 
-        <h2 style={{ marginTop: 0 }}>About</h2>
-
-        <div className={contactStyles.name}>
+        <Text fontSize="lg">
           Andreas Bigger - Viterbi Fellow @{' '}
           <ExtLink href="https://usc.edu">USC</ExtLink>
-        </div>
+        </Text>
+
+        <Subscribe />
 
         <div className="embedded">
           <GitHubCalendar username="abigger87" />
         </div>
 
-        {/*
-         * #222f38 - Dark Background Color
-         * #FFFFFF - Light Background Color
-         */}
         <ThirtyDayChart />
 
         <CodingLanguages />
@@ -73,12 +79,15 @@ export default () => {
           {contacts.map(({ Comp, link, alt }) => {
             return (
               <ExtLink key={link} href={link} aria-label={alt}>
-                <Comp height={32} />
+                <Comp
+                  fill={colorMode === 'dark' ? 'white' : 'black'}
+                  height={32}
+                />
               </ExtLink>
             )
           })}
         </div>
-      </div>
+      </Stack>
     </>
   )
 }

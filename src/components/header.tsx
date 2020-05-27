@@ -17,12 +17,6 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Code', link: 'https://github.com/abigger87/notion-blog' },
 ]
 
-const StickyNav = styled(Flex)`
-  position: sticky;
-  z-index: 10;
-  top: 0;
-`
-
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 
 interface color {
@@ -46,6 +40,23 @@ export default ({ titlePre = '' }) => {
     light: 'rgba(255, 255, 255, 0.8)',
     dark: 'rgba(23, 25, 35, 0.8)',
   }
+
+  const StickyNav = styled(Flex)`
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  background: ${colorMode === 'light' ? 'white' : '#171923'};
+          background-image: ${
+            colorMode === 'light'
+              ? `radial-gradient(#AAAAAA 1px, transparent 1px),
+          radial-gradient(#AAAAAA 1px, transparent 1px);`
+              : `radial-gradient(#DDDDDD 1px, transparent 1px),
+          radial-gradient(#DDDDDD 1px, transparent 1px);`
+          }
+          background-position: 0 0, 25px 25px;
+          background-attachment: fixed;
+          background-size: 50px 50px;
+  `
 
   return (
     <>
@@ -193,7 +204,6 @@ export default ({ titlePre = '' }) => {
               <ExtLink key={label} href={link}>
                 <Button
                   className={pathname === page ? 'active' : undefined}
-                  as="a"
                   variant="ghost"
                   p={[1, 4]}
                   style={{ padding: '.75rem' }}
