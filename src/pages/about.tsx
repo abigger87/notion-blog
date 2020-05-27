@@ -1,14 +1,7 @@
 import { GetStaticProps } from 'next'
 
 import { Header, ExtLink, Subscribe, Footer } from '../components'
-import {
-  GitHub,
-  Twitter,
-  Envelope,
-  LinkedIn,
-  ThirtyDayChart,
-  CodingLanguages,
-} from '../components/svgs'
+import { ThirtyDayChart, CodingLanguages } from '../components/svgs'
 
 import GitHubCalendar from 'react-github-calendar'
 import { Text, Heading, Stack, useColorMode } from '@chakra-ui/core'

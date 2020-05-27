@@ -1,29 +1,211 @@
-import Link from 'next/link'
-import Header from '../../components/header'
-
-import blogStyles from '../../styles/blog.module.css'
-import sharedStyles from '../../styles/shared.module.css'
-
+import React, { useState } from 'react'
+import { GetStaticProps } from 'next'
+import { Header, Footer, BlogPost } from '../../components'
+import useSWR from 'swr'
 import {
-  getBlogLink,
-  getDateStr,
-  postIsPublished,
-} from '../../lib/blog-helpers'
-import { textBlock } from '../../lib/notion/renderers'
+  useGithubJsonForm,
+  useGithubToolbarPlugins,
+} from 'react-tinacms-github'
+import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+
+import { NextSeo } from 'next-seo'
+import {
+  useColorMode,
+  Heading,
+  Text,
+  Flex,
+  Stack,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Icon,
+} from '@chakra-ui/core'
+
+import fetcher from '../../lib/fetcher'
+import { postIsPublished } from '../../lib/blog-helpers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
-import fetcher from '../../lib/fetcher'
-import format from 'comma-number'
-import useSWR from 'swr'
-
-import { useColorMode } from '@chakra-ui/core'
 
 interface color {
   colorMode: 'light' | 'dark'
   toggleColorMode: any
 }
 
-export async function getStaticProps({ preview }) {
+export default ({
+  posts = [],
+  preview,
+  file,
+}: {
+  file: any
+  posts: Array<any>
+  preview: boolean
+}) => {
+  // * Hooks
+  const [searchValue, setSearchValue] = useState('')
+  const { colorMode }: color = useColorMode()
+
+  const secondaryTextColor = {
+    light: 'gray.700',
+    dark: 'gray.400',
+  }
+
+  const formOptions = {
+    label: 'About Page',
+    fields: [
+      { name: 'Twitter', component: 'text' },
+      { name: 'GitHub', component: 'text' },
+      { name: 'LinkedIn', component: 'text' },
+      { name: 'Email', component: 'text' },
+    ],
+  }
+
+  // * Registers a JSON Tina Form
+  const [data] = useGithubJsonForm(file, formOptions)
+  const twitter = data?.twitter ? data?.twitter : 'https://twitter.com/'
+  const github = data?.github ? data?.github : 'https://github.com'
+  const linkedin = data?.linkedin ? data?.linkedin : 'https://linkedin.com'
+  const mail = data?.mail ? data?.mail : 'https://gmail.com'
+  const url = data?.url ? data?.url : 'https://andreasbigger.com/'
+  const title = data?.title ? data?.title : "Andreas Bigger's Blog"
+  const description = data?.description
+    ? data?.description
+    : 'A personal blog based on https://leerob.io and notion-blog.'
+
+  useGithubToolbarPlugins()
+
+  const filteredBlogPosts = posts
+    .sort(
+      (a, b) => Number(new Date(a.Published)) - Number(new Date(b.Published))
+    )
+    .filter(
+      frontMatter =>
+        frontMatter.Page.toLowerCase().includes(searchValue.toLowerCase()) ||
+        frontMatter.slug.toLowerCase().includes(searchValue.toLowerCase()) ||
+        frontMatter?.preview?.[0]?.[0]?.[0]
+          ?.toLowerCase()
+          .includes(searchValue.toLowerCase())
+    )
+
+  posts.forEach((value, index) => {
+    const { data } = useSWR(
+      `/api/page-views?id=${posts[index].Page.replace(/\s/g, '-')}`,
+      fetcher
+    )
+    posts[index].views = data?.total
+  })
+
+  const popularPosts = posts
+    .sort((a, b) => Number(b.views) - Number(a.views))
+    .slice(0, 3)
+
+  return (
+    <>
+      <Header titlePre="Blog" />
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={url}
+        openGraph={{
+          url,
+          title,
+          description,
+        }}
+      />
+      <Stack
+        as="main"
+        spacing={8}
+        justifyContent="center"
+        alignItems="flex-start"
+        m="0 auto 4rem auto"
+        maxWidth="700px"
+      >
+        <Flex
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          maxWidth="700px"
+        >
+          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
+            Blog
+          </Heading>
+          <Text color={secondaryTextColor[colorMode]}>
+            {`This is a young student's exploration into innovation in the modern world.
+              I've written ${posts.length} articles on this site, and my journey is just beginning.
+                  Use the search below to filter my posts.`}
+          </Text>
+          <InputGroup my={4} mr={4} w="100%">
+            <Input
+              aria-label="Search articles"
+              onChange={e => setSearchValue(e.target.value)}
+              placeholder="Search articles"
+            />
+            <InputRightElement>
+              <Icon name="search" color="gray.300" />
+            </InputRightElement>
+          </InputGroup>
+        </Flex>
+        {!searchValue && (
+          <Flex
+            flexDirection="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            maxWidth="700px"
+            mt={8}
+          >
+            <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
+              Most Popular
+            </Heading>
+            {popularPosts.map(frontMatter => (
+              <BlogPost
+                key={frontMatter.Page.replace(/\s/g, '-')}
+                {...frontMatter}
+              />
+            ))}
+          </Flex>
+        )}
+        <Flex
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          maxWidth="700px"
+          mt={8}
+        >
+          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
+            All Posts
+          </Heading>
+          {!filteredBlogPosts.length && 'No posts found.'}
+          {filteredBlogPosts.map(frontMatter => (
+            <BlogPost
+              key={frontMatter.Page.replace(/\s/g, '-')}
+              {...frontMatter}
+            />
+          ))}
+        </Flex>
+        <Footer
+          twitter={twitter}
+          github={github}
+          linkedin={linkedin}
+          mail={mail}
+        />
+      </Stack>
+    </>
+  )
+}
+
+/**
+ * Fetch data with getStaticProps based on 'preview' mode
+ */
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
+  if (preview) {
+    return getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: 'content/home.json',
+      parse: parseJson,
+    })
+  }
   const postsTable = await getBlogIndex()
 
   const authorsToGet: Set<string> = new Set()
@@ -52,99 +234,15 @@ export async function getStaticProps({ preview }) {
 
   return {
     props: {
+      sourceProvider: null,
+      error: null,
       preview: preview || false,
       posts,
+      file: {
+        fileRelativePath: 'content/home.json',
+        data: (await import('../../content/home.json')).default,
+      },
     },
     revalidate: 10,
   }
-}
-
-export default ({ posts = [], preview }) => {
-  let views = []
-
-  posts.forEach((value, index) => {
-    const { data } = useSWR(
-      `/api/page-views?id=${posts[index].Page.replace(/\s/g, '-')}`,
-      fetcher
-    )
-    views.push(data?.total)
-  })
-
-  const { colorMode, toggleColorMode }: color = useColorMode()
-
-  return (
-    <>
-      <Header titlePre="Blog" />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
-        )}
-        {posts.map((post, index) => {
-          return (
-            <div
-              className={blogStyles.postPreview}
-              key={post.Page.replace(/\s/g, '-')}
-              style={
-                colorMode === 'dark'
-                  ? {
-                      borderBottom: '1px solid #FFFFFF',
-                      marginTop: '2em',
-                      marginBottom: '1em',
-                    }
-                  : {
-                      borderBottom: '1px solid rgba(0, 0, 0, 0.8)',
-                      marginTop: '2em',
-                      marginBottom: '1em',
-                    }
-              }
-            >
-              <h3 className={blogStyles.cursorpointer}>
-                <Link
-                  href="/blog/[slug]"
-                  as={getBlogLink(post.Page.replace(/\s/g, '-'))}
-                >
-                  <div className={blogStyles.titleContainer}>
-                    {!post.Published && (
-                      <span className={blogStyles.draftBadge}>Draft</span>
-                    )}
-                    <a>{post.Page}</a>
-                  </div>
-                </Link>
-              </h3>
-              {post.Authors.length > 0 && (
-                <div className="authors">By: {post.Authors.join(' ')}</div>
-              )}
-              {post.Date && (
-                <div className="posted">Posted: {getDateStr(post.Date)}</div>
-              )}
-              <>
-                {views.length > index && views[index]
-                  ? format(views[index])
-                  : '–––'}{' '}
-                views
-              </>
-              <p style={{ marginBottom: '1em' }}>
-                {(!post.preview || post.preview.length === 0) &&
-                  'No preview available'}
-                {(post.preview || []).map((block, idx) =>
-                  textBlock(block, true, `${post.Slug}${idx}`)
-                )}
-              </p>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  )
 }
