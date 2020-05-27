@@ -1,5 +1,9 @@
 {
   "logo": "./avatar.png",
   "lightlogo": "./lightavatar.png",
-  "darklogo": "./avatar.png"
+  "darklogo": "./avatar.png",
+  "twitter": "https://twitter.com/abigger87",
+  "github": "https://github.com/abigger87",
+  "linkedin": "https://www.linkedin.com/in/andreasbigger/",
+  "mail": "mailto:bigger@usc.edu?subject=Andreas Bigger's Notion Blog"
 }
