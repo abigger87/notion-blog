@@ -22,25 +22,14 @@
 }
 
 .edit_button {
-  outline: none;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
   margin: 4px 2px;
-  transition-duration: 0.4s;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  border-radius: 7px;
 }
 
-.edit_button:hover {
+/*.edit_button:hover {
   background-color: black;
   color: white;
-}
+}*/
 
 html,
 body {

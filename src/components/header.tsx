@@ -184,6 +184,7 @@ export default ({ titlePre = '' }) => {
                   as="a"
                   variant="ghost"
                   p={[1, 4]}
+                  style={{ padding: '.75rem' }}
                 >
                   {label}
                 </Button>
@@ -195,6 +196,7 @@ export default ({ titlePre = '' }) => {
                   as="a"
                   variant="ghost"
                   p={[1, 4]}
+                  style={{ padding: '.75rem' }}
                 >
                   {label}
                 </Button>

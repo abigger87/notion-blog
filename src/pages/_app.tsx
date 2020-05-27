@@ -13,6 +13,7 @@ import {
   CSSReset,
   ColorModeProvider,
   useColorMode,
+  Button,
 } from '@chakra-ui/core'
 import theme from '../styles/theme'
 import { prismLightTheme, prismDarkTheme } from '../styles/prism'
@@ -126,11 +127,15 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
   const github = useGithubEditing()
 
   return (
-    <button
-      className="edit_button"
+    <Button
+      variantColor="gray"
+      variant="outline"
+      as="a"
+      p={[1, 4]}
+      style={{ padding: '.75rem', margin: '.75rem', zIndex: '999' }}
       onClick={editMode ? github.exitEditMode : github.enterEditMode}
     >
       {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
+    </Button>
   )
 }
