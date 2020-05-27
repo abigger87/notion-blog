@@ -11,14 +11,25 @@ export default () => {
   return colorMode === 'light' ? (
     <div className="embedded">
       <figure>
-        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/67cc9fd6-e9b2-449a-b0fb-2d7c65b4b8ba.svg"></embed>
+        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/5f2dce9b-d5bf-40cd-bb65-417443a2d9b3.svg"></embed>
       </figure>
     </div>
   ) : (
     <div className="embedded">
       <figure>
-        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/266cda6c-f847-433d-a92b-ea1852fe12f7.svg"></embed>
+        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/bbb5032e-7358-4dcd-8115-03f99e986af4.svg"></embed>
       </figure>
     </div>
   )
+
+  // * Blow Graphs include the title
+  /* return colorMode === 'light' ? (
+    <div className="embedded">
+      <figure><embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/cbd544f2-f117-476e-b1c0-51e9396d4b32.svg"></embed></figure>
+    </div>
+  ) : (
+      <div className="embedded">
+        <figure><embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/60e4f71b-bc94-4b8c-8c2f-52ba7eaa29a9.svg"></embed></figure>
+      </div>
+    )*/
 }

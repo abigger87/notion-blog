@@ -11,13 +11,13 @@ export default () => {
   return colorMode === 'light' ? (
     <div className="embedded">
       <figure>
-        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/0e529d93-26c6-4bd8-959c-ed601b5a5cf4.svg"></embed>
+        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/9712e4f4-75ff-479f-a9c8-89f3bbbedf4a.svg"></embed>
       </figure>
     </div>
   ) : (
     <div className="embedded">
       <figure>
-        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/7d3f5015-7da3-4bb5-97ba-2260c29bdfb6.svg"></embed>
+        <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/5aef348b-e535-4f11-b3b2-3fcd36e22c33.svg"></embed>
       </figure>
     </div>
   )

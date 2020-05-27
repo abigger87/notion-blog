@@ -77,7 +77,7 @@ const Dashboard = ({ file }) => {
           ],
         }}
       />
-      <Header titlePre="Dashboard" />
+      <Header titlePre="Dashboard" key="dash" />
       <Stack
         as="main"
         spacing={8}

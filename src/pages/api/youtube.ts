@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { google } from 'googleapis'
 
 import googleAuth from '../../lib/google/auth'
 
 export default async (_, res) => {
-  console.log(_)
+  let id = _.headers.link.substring(_.headers.link.lastIndexOf('/') + 1)
   const auth = await googleAuth.getClient()
   const youtube = google.youtube({
     auth,
@@ -11,7 +12,7 @@ export default async (_, res) => {
   })
 
   const response = await youtube.channels.list({
-    id: 'UCZMli3czZnd1uoc1ShTouQw',
+    id: id,
     part: 'statistics',
   })
 

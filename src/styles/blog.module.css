@@ -30,7 +30,7 @@
   border: none;
   background-color: black;
   border: 1px solid black;
-  color: white;
+  /*color: white;*/
   padding: 10px;
   height: 24px;
   border-radius: 5px;
@@ -39,7 +39,7 @@
 
 .escapePreview:hover {
   background-color: white;
-  color: black;
+  /*color: black;*/
   border: 1px solid black;
   cursor: pointer;
 }
@@ -53,7 +53,7 @@
 .draftBadge {
   border-radius: 16px;
   background-color: black;
-  color: white;
+  /*color: white;*/
   font-size: 14px;
   font-weight: 200;
   padding: 2px 7px;

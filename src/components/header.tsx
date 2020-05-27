@@ -168,16 +168,17 @@ export default ({ titlePre = '' }) => {
         mt={[0, 8]}
         mb={8}
         mx="auto"
+        style={{ marginTop: '1rem', marginBottom: '1rem' }}
       >
         <IconButton
           aria-label="Toggle dark mode"
           icon={colorMode === 'dark' ? 'sun' : 'moon'}
           onClick={toggleColorMode}
         />
-        <Box>
+        <Box style={{ textAlign: 'center' }}>
           {navItems.map(({ label, page, link }) =>
             page ? (
-              <NextLink href={page} passHref>
+              <NextLink href={page} key={label} passHref>
                 <Button
                   className={pathname === page ? 'active' : undefined}
                   as="a"
@@ -188,7 +189,7 @@ export default ({ titlePre = '' }) => {
                 </Button>
               </NextLink>
             ) : (
-              <ExtLink href={link}>
+              <ExtLink key={label} href={link}>
                 <Button
                   className={pathname === page ? 'active' : undefined}
                   as="a"

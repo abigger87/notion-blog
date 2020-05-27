@@ -16,6 +16,13 @@ import fetcher from '../../lib/fetcher'
 import format from 'comma-number'
 import useSWR from 'swr'
 
+import { useColorMode } from '@chakra-ui/core'
+
+interface color {
+  colorMode: 'light' | 'dark'
+  toggleColorMode: any
+}
+
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
 
@@ -63,6 +70,8 @@ export default ({ posts = [], preview }) => {
     views.push(data?.total)
   })
 
+  const { colorMode, toggleColorMode }: color = useColorMode()
+
   return (
     <>
       <Header titlePre="Blog" />
@@ -86,6 +95,19 @@ export default ({ posts = [], preview }) => {
             <div
               className={blogStyles.postPreview}
               key={post.Page.replace(/\s/g, '-')}
+              style={
+                colorMode === 'dark'
+                  ? {
+                      borderBottom: '1px solid #FFFFFF',
+                      marginTop: '2em',
+                      marginBottom: '1em',
+                    }
+                  : {
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.8)',
+                      marginTop: '2em',
+                      marginBottom: '1em',
+                    }
+              }
             >
               <h3 className={blogStyles.cursorpointer}>
                 <Link
@@ -112,7 +134,7 @@ export default ({ posts = [], preview }) => {
                   : '–––'}{' '}
                 views
               </>
-              <p>
+              <p style={{ marginBottom: '1em' }}>
                 {(!post.preview || post.preview.length === 0) &&
                   'No preview available'}
                 {(post.preview || []).map((block, idx) =>

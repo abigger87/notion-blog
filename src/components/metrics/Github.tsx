@@ -7,7 +7,7 @@ import fetcher from '../../lib/fetcher'
 import MetricCard from './Card'
 
 const GitHub = ({ link }: { link: string }) => {
-  const { data } = useSWR('/api/github', fetcher)
+  const { data } = useSWR(`/api/github?link=${link}`, fetcher)
 
   const stars = format(data?.stars)
 

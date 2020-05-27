@@ -1,7 +1,10 @@
+const fetch = require('node-fetch')
+
 export default async (_, res) => {
-  const userResponse = await fetch('https://api.github.com/users/leerob')
+  let username = _.headers.link.substring(_.headers.link.lastIndexOf('/') + 1)
+  const userResponse = await fetch(`https://api.github.com/users/${username}`)
   const userReposResponse = await fetch(
-    'https://api.github.com/users/leerob/repos'
+    `https://api.github.com/users/${username}/repos`
   )
 
   const user = await userResponse.json()

@@ -36,8 +36,13 @@ const GlobalStyle = ({ children }) => {
 
           body {
             background: ${colorMode === 'light' ? 'white' : '#171923'};
-            background-image: radial-gradient(#ddd 1px, transparent 1px),
-              radial-gradient(#ddd 1px, transparent 1px);
+            background-image: ${
+              colorMode === 'light'
+                ? `radial-gradient(#AAAAAA 1px, transparent 1px),
+            radial-gradient(#AAAAAA 1px, transparent 1px);`
+                : `radial-gradient(#DDDDDD 1px, transparent 1px),
+            radial-gradient(#DDDDDD 1px, transparent 1px);`
+            }
             background-position: 0 0, 25px 25px;
             background-attachment: fixed;
             background-size: 50px 50px;

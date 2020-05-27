@@ -1,7 +1,7 @@
 .header {
   display: block;
   min-height: 64px;
-  padding: 2em 0;
+  padding: 1em 0;
   text-align: center;
   letter-spacing: -0.02em;
 }
@@ -22,7 +22,7 @@
 }
 
 .header :global(a.active) {
-  color: #0070f3;
+  /* color: #0070f3;*/
   font-weight: 600;
 }
 

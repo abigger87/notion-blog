@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
@@ -6,8 +7,14 @@ import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
+import { Image, useColorMode } from '@chakra-ui/core'
 
-export default function Home({ file }) {
+interface color {
+  colorMode: 'light' | 'dark'
+  toggleColorMode: any
+}
+
+export default function Home({ file }: { file: any }) {
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -17,9 +24,13 @@ export default function Home({ file }) {
     ],
   }
 
+  const { colorMode, toggleColorMode }: color = useColorMode()
+
   // * Registers a JSON Tina Form
   const [data, form] = useGithubJsonForm(file, formOptions)
-  const logo = data?.logo ? data?.logo : '/avatar.png'
+  const darklogo = data?.darklogo ? data?.darklogo : '/darkavatar.png'
+  const lightlogo = data?.lightlogo ? data?.lightlogo : '/lightavatar.png'
+  const logo = colorMode === 'dark' ? lightlogo : darklogo
 
   useGithubToolbarPlugins()
 
@@ -27,7 +38,12 @@ export default function Home({ file }) {
     <>
       <Header titlePre="Home" />
       <div className={sharedStyles.absolutecenter}>
-        <img src={logo} alt="AB Castle Avatar" height="200vw" />
+        <Image
+          src={logo}
+          alt="AB Castle Avatar"
+          style={{ zIndex: 999 }}
+          height="8em"
+        />
       </div>
     </>
   )

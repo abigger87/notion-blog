@@ -1,3 +1,5 @@
 {
-  "logo": "/avatar.png"
+  "logo": "./avatar.png",
+  "lightlogo": "./lightavatar.png",
+  "darklogo": "./avatar.png"
 }

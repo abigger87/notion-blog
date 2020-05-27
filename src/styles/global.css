@@ -52,7 +52,7 @@ body {
 body {
   min-height: 100vh;
   background: var(--bg);
-  color: var(--fg);
+  /* color: var(--fg);*/
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-image: radial-gradient(#ddd 1px, transparent 1px),
@@ -68,7 +68,8 @@ body {
 
 .embedded {
   text-align: center;
-  margin: 20px 10vw;
+  margin: 2em auto;
+  max-width: 800px;
 }
 
 /* * Override  React-GitHub-Calendar border */
@@ -79,7 +80,7 @@ body {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  color: #000;
+  /* color: #000;*/
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -94,7 +95,7 @@ pre[class*='language-'] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #999;
+  /*color: #999;*/
 }
 
 .token.namespace {
@@ -103,12 +104,12 @@ pre[class*='language-'] {
 
 .token.string,
 .token.attr-value {
-  color: #028265;
+  /* color: #028265;*/
 }
 
 .token.punctuation,
 .token.operator {
-  color: #000;
+  /* color: #000;*/
 }
 
 .token.url,
@@ -116,7 +117,7 @@ pre[class*='language-'] {
 .token.boolean,
 .token.variable,
 .token.constant {
-  color: #36acaa;
+  /* color: #36acaa;*/
 }
 
 .token.atrule,
@@ -127,11 +128,11 @@ code[class*='language-css'] {
 }
 
 .language-json .token.boolean {
-  color: var(--geist-success);
+  /* color: var(--geist-success);*/
 }
 
 .token.keyword {
-  color: #ff0078;
+  /* color: #ff0078;*/
   font-weight: bolder;
 }
 
@@ -140,16 +141,16 @@ code[class*='language-css'] {
 .token.class-name,
 .token.number,
 .token.tag .token.punctuation {
-  color: var(--geist-success);
+  /* color: var(--geist-success);*/
 }
 
 .language-autohotkey .token.tag {
-  color: #9a050f;
+  /* color: #9a050f;*/
 }
 
 .token.selector,
 .language-autohotkey .token.keyword {
-  color: #00009f;
+  /* color: #00009f;*/
 }
 
 .token.important,
@@ -162,94 +163,94 @@ code[class*='language-css'] {
 }
 
 .token.deleted {
-  color: red;
+  /* color: red;*/
   font-weight: bolder;
 }
 
 .token.inserted {
-  color: var(--geist-success);
+  /* color: var(--geist-success);*/
   font-weight: bolder;
 }
 
 .language-json .token.property,
 .language-markdown .token.title {
-  color: #000;
+  /* color: #000;*/
   font-weight: bolder;
 }
 
 .language-markdown .token.code {
-  color: var(--geist-success);
+  /* color: var(--geist-success);*/
   font-weight: normal;
 }
 
 .language-markdown .token.list,
 .language-markdown .token.hr {
-  color: #999;
+  /* color: #999;*/
 }
 
 .language-markdown .token.url {
-  color: #ff0078;
+  /* color: #ff0078;*/
   font-weight: bolder;
 }
 
 .token.selector {
-  color: #2b91af;
+  /* color: #2b91af;*/
 }
 
 .token.property,
 .token.entity {
-  color: #f00;
+  /* color: #f00;*/
 }
 
 .token.attr-name,
 .token.regex {
-  color: #d9931e;
+  /* color: #d9931e;*/
 }
 
 .token.directive.tag .tag {
   background: #ff0;
-  color: #393a34;
+  /* color: #393a34;*/
 }
 
 /* dark */
 
 pre.dark[class*='language-'] {
-  color: #fafbfc;
+  /* color: #fafbfc;*/
 }
 
 .language-json .dark .token.boolean {
-  color: var(--geist-success);
+  /* color: var(--geist-success);*/
 }
 
 .dark .token.string {
-  color: #50e3c2;
+  /* color: #50e3c2;*/
 }
 
 .dark .token.function,
 .dark .token.tag,
 .dark .token.class-name,
 .dark .token.number {
-  color: #2ba8ff;
+  /* color: #2ba8ff;*/
 }
 
 .dark .token.attr-value,
 .dark .token.punctuation,
 .dark .token.operator {
-  color: #efefef;
+  /* color: #efefef;*/
 }
 
 .dark .token.attr-name,
 .dark .token.regex {
-  color: #fac863;
+  /* color: #fac863;*/
 }
 
 .language-json .dark .token.property,
 .language-markdown .dark .token.title {
-  color: #fff;
+  /* color: #fff;*/
 }
 
 .language-markdown .dark .token.code {
-  color: #50e3c2;
+  /* color: #50e3c2;*/
 }
 
 .links {
@@ -303,22 +304,22 @@ pre.dark[class*='language-'] {
 
 figure {
   font-size: 0.85rem;
-  color: #999;
+  /* color: #999;*/
   line-height: 1.8;
 }
 
 figure {
   font-size: 0.85rem;
-  color: #999;
+  /* color: #999;*/
 }
 
 a {
-  color: #0070f3;
+  /* color: #0070f3;*/
   text-decoration: none;
 }
 
 a:hover {
-  color: #3291ff;
+  /* color: #3291ff;*/
 }
 
 .links {
@@ -350,7 +351,7 @@ h2 {
   font-weight: 300;
   font-size: 1.25rem;
   letter-spacing: -0.02rem;
-  color: var(--accents-3);
+  /* color: var(--accents-3);*/
 }
 
 .video {
@@ -369,10 +370,10 @@ h2 {
 }
 
 p {
-  color: #555;
+  /* color: #555;*/
   font-weight: 400;
   font-size: 0.94rem;
-  line-height: 1.7;
+  line-height: 1.2;
 }
 
 pre {
@@ -432,9 +433,9 @@ footer img {
 }
 
 footer span:nth-child(3) {
-  color: #777777;
+  /* color: #777777;*/
 }
 
 footer span:nth-child(3) a {
-  color: inherit;
+  /* color: inherit;*/
 }
