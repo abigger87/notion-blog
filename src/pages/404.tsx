@@ -29,7 +29,8 @@ const Error = () => {
         spacing={8}
         justifyContent="center"
         alignItems="flex-start"
-        m="0 auto 4rem auto"
+        m="0 auto 0 auto"
+        px={6}
         maxWidth="700px"
       >
         <Flex

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { NextSeo } from 'next-seo'
 import {
@@ -7,6 +8,7 @@ import {
   Flex,
   Stack,
   SimpleGrid,
+  Link,
 } from '@chakra-ui/core'
 
 import { GetStaticProps } from 'next'
@@ -16,7 +18,7 @@ import {
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
 
-import { Header } from '../components'
+import { Header, Footer } from '../components'
 import {
   Analytics,
   Buttondown,
@@ -36,24 +38,43 @@ interface color {
   toggleColorMode: any
 }
 
-const Dashboard = ({ file }) => {
+const Dashboard = ({ file, homefile }) => {
   const { colorMode }: color = useColorMode()
   const secondaryTextColor = {
     light: 'gray.700',
     dark: 'gray.400',
   }
 
-  const formOptions = {
-    label: 'Dashboard',
-    fields: [
-      { name: 'YouTube Channel', component: 'text' },
-      { name: 'Contact', component: 'text' },
-      { name: 'Source', component: 'text' },
-    ],
-  }
+  let data
 
   // * Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(file, formOptions)
+  ;[data] = useGithubJsonForm(homefile, {
+    label: 'Dashboard',
+    fields: [
+      { name: 'Twitter', component: 'text' },
+      { name: 'GitHub', component: 'text' },
+      { name: 'LinkedIn', component: 'text' },
+      { name: 'Email', component: 'text' },
+      { name: 'URL', component: 'text' },
+      { name: 'Title', component: 'text' },
+      { name: 'Description', component: 'text' },
+    ],
+  })
+
+  const twitter = data?.twitter ? data?.twitter : 'https://twitter.com/'
+  const github = data?.github ? data?.github : 'https://github.com'
+  const linkedin = data?.linkedin ? data?.linkedin : 'https://linkedin.com'
+  const mail = data?.mail
+    ? data?.mail
+    : (// * Registers a JSON Tina Form
+      'https://gmail.com'[data] = useGithubJsonForm(file, {
+        label: 'Dashboard',
+        fields: [
+          { name: 'YouTube Channel', component: 'text' },
+          { name: 'Contact', component: 'text' },
+          { name: 'Source', component: 'text' },
+        ],
+      }))
 
   useGithubToolbarPlugins()
 
@@ -83,7 +104,8 @@ const Dashboard = ({ file }) => {
         spacing={8}
         justifyContent="center"
         alignItems="flex-start"
-        m="0 auto 4rem auto"
+        m="0 auto 0 auto"
+        px={6}
         maxWidth="700px"
       >
         <Flex
@@ -92,14 +114,33 @@ const Dashboard = ({ file }) => {
           alignItems="flex-start"
           maxWidth="700px"
         >
-          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
+          <Heading
+            textAlign="center"
+            mx="auto"
+            letterSpacing="tight"
+            mb={2}
+            as="h1"
+            size="2xl"
+          >
             Dashboard
           </Heading>
-          <Text color={secondaryTextColor[colorMode]}>
-            This is a personal dashboard based on https://leerob.io dashboard,
-            built with Next.js API routes deployed as serverless functions. This
-            dashboard page tracks metrics across social media platforms
-            including Unsplash, YouTube, GitHub, Instagram, and more.
+          <Text textAlign="center" color={secondaryTextColor[colorMode]}>
+            This is a personal dashboard based on{' '}
+            <Link color="teal.500" href="https://leerob.io" isExternal>
+              leerob.io
+            </Link>{' '}
+            and{' '}
+            <Link
+              color="teal.500"
+              href="https://notion-blog.now.sh/"
+              isExternal
+            >
+              notion-blog
+            </Link>
+            , built with Next.js API routes deployed as serverless functions and
+            Notion as a CMS. This dashboard page tracks metrics across social
+            media platforms including Unsplash, YouTube, GitHub, Instagram, and
+            more.
           </Text>
         </Flex>
         <Flex
@@ -107,7 +148,8 @@ const Dashboard = ({ file }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
           maxWidth="700px"
-          mt={8}
+          my={4}
+          mx="auto"
         >
           <Unsplash link={data?.unsplash ? data?.unsplash : ''} />
           <YouTube link={data?.youtube ? data?.youtube : ''} />
@@ -120,6 +162,12 @@ const Dashboard = ({ file }) => {
             <Buttondown link={data?.buttondown ? data?.buttondown : ''} />
           </SimpleGrid>
         </Flex>
+        <Footer
+          twitter={twitter}
+          github={github}
+          linkedin={linkedin}
+          mail={mail}
+        />
       </Stack>
     </>
   )
@@ -149,6 +197,10 @@ export const getStaticProps: GetStaticProps = async function({
       file: {
         fileRelativePath: 'content/metrics.json',
         data: (await import('../content/metrics.json')).default,
+      },
+      homefile: {
+        fileRelativePath: 'content/home.json',
+        data: (await import('../content/home.json')).default,
       },
     },
   }

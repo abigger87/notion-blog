@@ -1,5 +1,5 @@
 // @ts-nocheck
-import '../styles/global.css'
+//import '../styles/global.css'
 import ExtLink from '../components/ext-link'
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
@@ -33,6 +33,14 @@ const GlobalStyle = ({ children }) => {
           ::selection {
             background-color: #47a3f3;
             color: #fefefe;
+          }
+
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            height: max-content;
+            min-height: 100vh;
           }
 
           body {

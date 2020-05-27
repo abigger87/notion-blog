@@ -50,12 +50,15 @@ export default ({
   }
 
   const formOptions = {
-    label: 'About Page',
+    label: 'Blogs Page',
     fields: [
       { name: 'Twitter', component: 'text' },
       { name: 'GitHub', component: 'text' },
       { name: 'LinkedIn', component: 'text' },
       { name: 'Email', component: 'text' },
+      { name: 'URL', component: 'text' },
+      { name: 'Title', component: 'text' },
+      { name: 'Description', component: 'text' },
     ],
   }
 
@@ -116,7 +119,8 @@ export default ({
         spacing={8}
         justifyContent="center"
         alignItems="flex-start"
-        m="0 auto 4rem auto"
+        m="0 auto 0 auto"
+        px={6}
         maxWidth="700px"
       >
         <Flex

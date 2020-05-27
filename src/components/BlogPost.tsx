@@ -34,14 +34,14 @@ const BlogPost = (frontMatter: any) => {
             justifyContent="space-between"
             flexDirection={['column', 'row']}
           >
-            <Heading size="md" as="h3" mb={2} fontWeight="medium">
+            <Heading size="md" as="h3" mb={1} fontWeight="medium">
               {Page}
             </Heading>
             <Text
               color="gray.500"
               minWidth="105px"
               textAlign={['left', 'right']}
-              mb={[4, 0]}
+              mb={2}
             >
               {`${views ? format(views) : '–––'} views`}
             </Text>
@@ -52,12 +52,13 @@ const BlogPost = (frontMatter: any) => {
             justifyContent="space-between"
             flexDirection={['column', 'row']}
           >
-            <Text color={secondaryTextColor[colorMode]}>{preview}</Text>
+            <Text mb={1} color={secondaryTextColor[colorMode]}>
+              {preview}
+            </Text>
             <Text
               color="gray.500"
-              minWidth="105px"
+              minWidth="150px"
               textAlign={['left', 'right']}
-              mb={[4, 0]}
             >
               {getDateStr(postdate)}
             </Text>

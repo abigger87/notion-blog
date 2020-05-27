@@ -176,7 +176,8 @@ export default ({ titlePre = '' }) => {
         maxWidth="900px"
         width="100%"
         as="nav"
-        p={8}
+        py={4}
+        px={6}
         mt={[0, 8]}
         mb={8}
         mx="auto"

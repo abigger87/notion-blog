@@ -1,13 +1,13 @@
 // @ts-nocheck
 import Header from '../components/header'
-import sharedStyles from '../styles/shared.module.css'
+//import sharedStyles from '../styles/shared.module.css'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
 import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
-import { Image, useColorMode } from '@chakra-ui/core'
+import { Image, useColorMode, Box } from '@chakra-ui/core'
 
 interface color {
   colorMode: 'light' | 'dark'
@@ -37,14 +37,23 @@ export default function Home({ file }: { file: any }) {
   return (
     <>
       <Header titlePre="Home" />
-      <div className={sharedStyles.absolutecenter}>
+      <Box
+        position="absolute"
+        p="5em 0"
+        d="flex"
+        top="0px"
+        width="100%"
+        height="100%"
+      >
         <Image
           src={logo}
           alt="AB Castle Avatar"
+          m="auto"
+          alignSelf="center"
           style={{ zIndex: 999 }}
           height="8em"
         />
-      </div>
+      </Box>
     </>
   )
 }

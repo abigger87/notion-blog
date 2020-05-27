@@ -13,7 +13,7 @@ const Footer = ({
   linkedin: string
   mail: string
 }) => (
-  <Flex justify="center" mx="auto" mb={4}>
+  <Flex justify="center" mx="auto" mt={4} mb={8}>
     <Link href={twitter} title="Twitter" isExternal>
       <IconButton
         aria-label="Twitter"

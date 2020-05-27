@@ -1,26 +1,39 @@
-import Link from 'next/link'
+// @ts-nocheck
 import fetch from 'node-fetch'
+import useSWR from 'swr'
+import { NextSeo } from 'next-seo'
+import fetcher from '../../lib/fetcher'
+import format from 'comma-number'
 import { useRouter } from 'next/router'
-import Header from '../../components/header'
-import Heading from '../../components/heading'
-import components from '../../components/dynamic'
+import {
+  Header,
+  Heading as MyHeading,
+  Footer,
+  components,
+} from '../../components'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
-import useSWR from 'swr'
-import fetcher from '../../lib/fetcher'
-import format from 'comma-number'
+import { GetStaticProps } from 'next'
+
+import { Text, Stack, Heading, Divider, Box } from '@chakra-ui/core'
 
 // Get the data for each blog post
-export async function getStaticProps({ params: { slug }, preview }) {
+export const getStaticProps: GetStaticProps = async function({
+  params: { slug },
+  preview,
+}: {
+  params: any
+  preview: boolean
+}) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
   let post
+
   //const post = postsTable[slug]
   Object.values(postsTable).forEach((o: any) => {
     if (o.Page.replace(/\s/g, '-') === slug) {
@@ -43,7 +56,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const postData = await getPageData(post.id)
   post.content = postData.blocks
 
-  for (let i = 0; i < postData.blocks.length; i++) {
+  for (let i = 0; i < postData?.blocks?.length; i++) {
     const { value } = postData.blocks[i]
     const { type, properties } = value
     if (type == 'tweet') {
@@ -74,7 +87,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
       preview: preview || false,
       slug,
     },
-    revalidate: 10,
   }
 }
 
@@ -93,9 +105,24 @@ export async function getStaticPaths() {
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, redirect, preview, slug }) => {
+const RenderPost = ({
+  post,
+  redirect,
+  preview,
+  slug,
+}: {
+  post: any
+  redirect: string
+  preview: boolean
+  slug: string
+}) => {
   const router = useRouter()
   const [firstView, setFirstView] = useState(true)
+
+  const title = post?.Page
+  const description = post?.preview?.[0]?.[0]?.[0]
+  const posturl =
+    'https://andreasbigger.com/blogs/' + post?.Page.replace(/\s/g, '-')
 
   let listTagName: string | null = null
   let listLastId: string | null = null
@@ -111,7 +138,7 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
   let views
 
   if (firstView) {
-    const { data } = useSWR(
+    let { data } = useSWR(
       `/api/increment-views?id=${post?.Page.replace(/\s/g, '-')}`,
       fetcher
     )
@@ -148,58 +175,63 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
     }
   }, [redirect, post])
 
-  // If the page is not yet generated, this will be displayed
-  // initially until getStaticProps() finishes running
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return <Box>Loading...</Box>
   }
 
-  // if you don't have a post at this point, and are not
-  // loading one from fallback then  redirect back to the index
   if (!post) {
     return (
-      <div className={blogStyles.post}>
-        <p>
+      <Box mx="auto" p="5px">
+        <Text fontSize="md">
           Woops! didn't find that post, redirecting you back to the blog index
-        </p>
-      </div>
+        </Text>
+      </Box>
     )
   }
 
   return (
     <>
       <Header titlePre={post.Page} />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className={blogStyles.post}>
-        <h1>{post.Page || ''}</h1>
-        {post.Authors.length > 0 && (
-          <div className="authors">By: {post.Authors.join(' ')}</div>
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={posturl}
+        openGraph={{
+          url: posturl,
+          title,
+          description,
+        }}
+      />
+      <Stack
+        as="main"
+        spacing={8}
+        justifyContent="center"
+        alignItems="flex-start"
+        m="0 auto 0 auto"
+        px={6}
+        maxWidth="700px"
+      >
+        <Heading as="h1" size="lg">
+          {post.Page || ''}
+        </Heading>
+        {post?.Authors?.length > 0 && (
+          <Box className="authors">By: {post.Authors.join(' ')}</Box>
         )}
         {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
+          <Box className="posted">Posted: {getDateStr(post.Date)}</Box>
         )}
         <>{views ? format(views) : '–––'} views</>
 
-        <hr />
+        <Divider />
 
-        {(!post.content || post.content.length === 0) && (
-          <p>This post has no content</p>
+        {(!post.content || post?.content?.length === 0) && (
+          <Text>This post has no content</Text>
         )}
 
         {(post.content || []).map((block, blockIdx) => {
           const { value } = block
           const { type, properties, id, parent_id } = value
-          const isLast = blockIdx === post.content.length - 1
+          const isLast = blockIdx === post?.content?.length - 1
           const isList = listTypes.has(type)
           let toRender = []
 
@@ -232,7 +264,7 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
                       components.li || 'ul',
                       { key: item.key },
                       item.children,
-                      item.nested.length > 0
+                      item?.nested?.length > 0
                         ? React.createElement(
                             components.ul || 'ul',
                             { key: item + 'sub-list' },
@@ -253,9 +285,9 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
 
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
-              <Heading key={id}>
+              <MyHeading key={id}>
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
-              </Heading>
+              </MyHeading>
             )
           }
 
@@ -380,7 +412,7 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
 
               toRender.push(
                 useWrapper ? (
-                  <div
+                  <Box
                     style={{
                       paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
                       position: 'relative',
@@ -389,7 +421,7 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
                     key={id}
                   >
                     {child}
-                  </div>
+                  </Box>
                 ) : (
                   child
                 )
@@ -447,21 +479,21 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
             }
             case 'callout': {
               toRender.push(
-                <div className="callout" key={id}>
+                <Box className="callout" key={id}>
                   {value.format?.page_icon && (
-                    <div>{value.format?.page_icon}</div>
+                    <Box>{value.format?.page_icon}</Box>
                   )}
-                  <div className="text">
+                  <Box className="text">
                     {textBlock(properties.title, true, id)}
-                  </div>
-                </div>
+                  </Box>
+                </Box>
               )
               break
             }
             case 'tweet': {
               if (properties.html) {
                 toRender.push(
-                  <div
+                  <Box
                     dangerouslySetInnerHTML={{ __html: properties.html }}
                     key={id}
                   />
@@ -480,7 +512,15 @@ const RenderPost = ({ post, redirect, preview, slug }) => {
           }
           return toRender
         })}
-      </div>
+        <Box mx="auto" mt={4}>
+          <Footer
+            twitter={'https://twitter.com/abigger87'}
+            github={'https://github.com/abigger87'}
+            linkedin={'https://www.linkedin.com/in/andreasbigger/'}
+            mail={"mailto:bigger@usc.edu?subject=Andreas Bigger's Notion Blog"}
+          />
+        </Box>
+      </Stack>
     </>
   )
 }
