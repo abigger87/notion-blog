@@ -247,6 +247,6 @@ export const getStaticProps: GetStaticProps = async function({
         data: (await import('../../content/home.json')).default,
       },
     },
-    revalidate: 10,
+    unstable_revalidate: 10,
   }
 }

@@ -6,6 +6,7 @@ const {
   BLOG_INDEX_ID,
 } = require('./src/lib/notion/server-constants')
 const withPWA = require('next-pwa')
+var webpack = require('webpack')
 
 try {
   fs.unlinkSync(path.resolve('.blog_index_data'))
@@ -52,6 +53,13 @@ module.exports = withPWA({
   target: 'experimental-serverless-trace',
 
   webpack(cfg, { dev, isServer }) {
+    cfg.plugins.push(
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+      })
+    )
+
     // only compile build-rss in production server build
     if (dev || !isServer) return cfg
 

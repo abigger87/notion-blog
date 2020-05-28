@@ -26,6 +26,7 @@ import {
   Gumroad,
   Unsplash,
   YouTube,
+  Wakatime,
 } from '../components/metrics'
 
 const url = 'https://andreasbigger.com/dashboard'
@@ -45,10 +46,8 @@ const Dashboard = ({ file, homefile }) => {
     dark: 'gray.400',
   }
 
-  let data
-
   // * Registers a JSON Tina Form
-  ;[data] = useGithubJsonForm(homefile, {
+  let [metricsdata] = useGithubJsonForm(homefile, {
     label: 'Dashboard',
     fields: [
       { name: 'Twitter', component: 'text' },
@@ -61,20 +60,26 @@ const Dashboard = ({ file, homefile }) => {
     ],
   })
 
-  const twitter = data?.twitter ? data?.twitter : 'https://twitter.com/'
-  const github = data?.github ? data?.github : 'https://github.com'
-  const linkedin = data?.linkedin ? data?.linkedin : 'https://linkedin.com'
-  const mail = data?.mail
-    ? data?.mail
-    : (// * Registers a JSON Tina Form
-      'https://gmail.com'[data] = useGithubJsonForm(file, {
-        label: 'Dashboard',
-        fields: [
-          { name: 'YouTube Channel', component: 'text' },
-          { name: 'Contact', component: 'text' },
-          { name: 'Source', component: 'text' },
-        ],
-      }))
+  const twitter = metricsdata?.twitter
+    ? metricsdata?.twitter
+    : 'https://twitter.com/'
+  const github = metricsdata?.github
+    ? metricsdata?.github
+    : 'https://github.com'
+  const linkedin = metricsdata?.linkedin
+    ? metricsdata?.linkedin
+    : 'https://linkedin.com'
+  const mail = metricsdata?.mail ? metricsdata?.mail : 'https://gmail.com'
+
+  // * Registers a JSON Tina Form
+  let [data] = useGithubJsonForm(file, {
+    label: 'Dashboard',
+    fields: [
+      { name: 'YouTube Channel', component: 'text' },
+      { name: 'Contact', component: 'text' },
+      { name: 'Source', component: 'text' },
+    ],
+  })
 
   useGithubToolbarPlugins()
 
@@ -114,17 +119,10 @@ const Dashboard = ({ file, homefile }) => {
           alignItems="flex-start"
           maxWidth="700px"
         >
-          <Heading
-            textAlign="center"
-            mx="auto"
-            letterSpacing="tight"
-            mb={2}
-            as="h1"
-            size="2xl"
-          >
+          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
             Dashboard
           </Heading>
-          <Text textAlign="center" color={secondaryTextColor[colorMode]}>
+          <Text color={secondaryTextColor[colorMode]}>
             This is a personal dashboard based on{' '}
             <Link color="teal.500" href="https://leerob.io" isExternal>
               leerob.io
@@ -151,16 +149,19 @@ const Dashboard = ({ file, homefile }) => {
           my={4}
           mx="auto"
         >
-          <Unsplash link={data?.unsplash ? data?.unsplash : ''} />
-          <YouTube link={data?.youtube ? data?.youtube : ''} />
+          {/*<Unsplash link={data?.unsplash ? data?.unsplash : ''} />
+          <YouTube link={data?.youtube ? data?.youtube : ''} />*/}
+          {/*<Gumroad link={data?.gumroad ? data?.gumroad : ''} />*/}
           <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>
             <Analytics link={data?.analytics ? data?.analytics : ''} />
             <GitHub link={data?.github ? data?.github : ''} />
           </SimpleGrid>
-          <SimpleGrid columns={[1, 1, 2]} spacing={4} mb={4}>
-            <Gumroad link={data?.gumroad ? data?.gumroad : ''} />
+          <Wakatime
+            link={data?.wakatime ? data?.wakatime : ''}
+            range="last_year"
+          >
             <Buttondown link={data?.buttondown ? data?.buttondown : ''} />
-          </SimpleGrid>
+          </Wakatime>
         </Flex>
         <Footer
           twitter={twitter}

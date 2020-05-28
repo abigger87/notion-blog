@@ -11,6 +11,7 @@ import {
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+import $ from 'jquery'
 
 interface color {
   colorMode: 'light' | 'dark'

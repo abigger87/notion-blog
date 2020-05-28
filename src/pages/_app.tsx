@@ -19,6 +19,7 @@ import theme from '../styles/theme'
 import { prismLightTheme, prismDarkTheme } from '../styles/prism'
 import { Global, css } from '@emotion/core'
 import { hotjar } from 'react-hotjar'
+import $ from 'jquery'
 
 const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode()

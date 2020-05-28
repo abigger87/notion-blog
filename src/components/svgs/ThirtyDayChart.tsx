@@ -1,4 +1,6 @@
+import * as React from 'react'
 import { useColorMode } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 
 interface color {
   colorMode: 'light' | 'dark'
@@ -9,17 +11,17 @@ export default () => {
   const { colorMode }: color = useColorMode()
 
   return colorMode === 'light' ? (
-    <div className="embedded">
+    <Box className="embedded">
       <figure>
         <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/5f2dce9b-d5bf-40cd-bb65-417443a2d9b3.svg"></embed>
       </figure>
-    </div>
+    </Box>
   ) : (
-    <div className="embedded">
+    <Box className="embedded">
       <figure>
         <embed src="https://wakatime.com/share/@1258dd5f-7d07-4a86-be38-df8588fb2a29/bbb5032e-7358-4dcd-8115-03f99e986af4.svg"></embed>
       </figure>
-    </div>
+    </Box>
   )
 
   // * Blow Graphs include the title

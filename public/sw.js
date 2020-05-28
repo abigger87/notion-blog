@@ -108,35 +108,23 @@ define('./sw.js', ['./workbox-b90066a8'], function(workbox) {
     [
       {
         url: '/_next/static/runtime/amp.js',
-        revision: '638440ab3e3f74a48d314a3c5ef0f0c1',
-      },
-      {
-        url: '/_next/static/runtime/amp.js.map',
-        revision: '539938e9e6db4ecde21a27aa8028a0c2',
+        revision: '2fdd189ea17faa56a4f44a2fdd88b84f',
       },
       {
         url: '/_next/static/runtime/main.js',
-        revision: 'd7792927843fdd8d24208fb629d98b25',
-      },
-      {
-        url: '/_next/static/runtime/main.js.map',
-        revision: '21624ca42de444b849acadbd256435cb',
+        revision: 'ce0fc16279037d3ae9601e1cdb9c7981',
       },
       {
         url: '/_next/static/runtime/polyfills.js',
-        revision: 'd483e1670f506a084bb4a623e938245c',
+        revision: '516c3d4deeff70783126396a5a14d34e',
       },
       {
-        url: '/_next/static/runtime/polyfills.js.map',
-        revision: '9e99330d7177a9df34074356546c67da',
+        url: '/_next/static/runtime/react-refresh.js',
+        revision: '9d11ea7095b60a828f2db49ed1004ade',
       },
       {
         url: '/_next/static/runtime/webpack.js',
-        revision: '56e08df4eede6823442ab973ada5240b',
-      },
-      {
-        url: '/_next/static/runtime/webpack.js.map',
-        revision: 'd1012d2e2cc58ce4b79b43b1253f855e',
+        revision: 'd0494e61577f6be385fcf129ee293ebc',
       },
     ],
     {
