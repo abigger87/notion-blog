@@ -50,7 +50,6 @@ export const getStaticProps: GetStaticProps = async function({
         redirect: '/blog',
         preview: false,
       },
-      unstable_revalidate: 5,
     }
   }
   const postData = await getPageData(post.id)
