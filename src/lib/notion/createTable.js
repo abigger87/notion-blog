@@ -1,5 +1,6 @@
 // commonjs so it can be run without transpiling
-const uuid = require('uuid/v4')
+//const uuid = require('uuid/v4')
+const { v4: uuid } = require('uuid')
 const fetch = require('node-fetch')
 const {
   BLOG_INDEX_ID: pageId,

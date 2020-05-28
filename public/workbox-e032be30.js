@@ -600,10 +600,8 @@ define('./workbox-e032be30.js', ['exports'], function(t) {
           url: n,
         })
       })
-      return (
-        await Promise.all(c),
-        { updatedURLs: s.map(t => t.url), notUpdatedURLs: n }
-      )
+      await Promise.all(c)
+      return { updatedURLs: s.map(t => t.url), notUpdatedURLs: n }
     }
     async activate() {
       const t = await self.caches.open(this.m),
@@ -855,7 +853,8 @@ define('./workbox-e032be30.js', ['exports'], function(t) {
       A(t) {
         if (!this.N) return !0
         const e = this.B(t)
-        return null === e || e >= Date.now() - 1e3 * this.N
+        if (null === e) return !0
+        return e >= Date.now() - 1e3 * this.N
       }
       B(t) {
         if (!t.headers.has('date')) return null
