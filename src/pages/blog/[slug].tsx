@@ -21,6 +21,15 @@ import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
 import { GetStaticProps } from 'next'
 
 import { Text, Stack, Heading, Divider, Box } from '@chakra-ui/core'
+import styled from '@emotion/styled'
+
+const SmallMBox = styled(Box)`
+  margin-bottom: 0.5rem;
+`
+
+const MediumMBox = styled(Box)`
+  margin-bottom: 1rem;
+`
 
 // Get the data for each blog post
 export const getStaticProps: GetStaticProps = async function({
@@ -83,6 +92,8 @@ export const getStaticProps: GetStaticProps = async function({
   return {
     props: {
       post,
+      sourceProvider: null,
+      error: null,
       preview: preview || false,
       slug,
     },
@@ -210,18 +221,16 @@ const RenderPost = ({
         px={6}
         maxWidth="700px"
       >
-        <Heading as="h1" size="lg">
+        <Heading style={{ marginBottom: '1rem' }} as="h1" size="md">
           {post.Page || ''}
         </Heading>
         {post?.Authors?.length > 0 && (
-          <Box className="authors">By: {post.Authors.join(' ')}</Box>
+          <SmallMBox m={0}>By: {post.Authors.join(' ')}</SmallMBox>
         )}
         {post.Date && (
-          <Box className="posted">Posted: {getDateStr(post.Date)}</Box>
+          <SmallMBox m={0}>Posted: {getDateStr(post.Date)}</SmallMBox>
         )}
-        <>{views ? format(views) : '–––'} views</>
-
-        <Divider />
+        <MediumMBox>{views ? format(views) : '–––'} views</MediumMBox>
 
         {(!post.content || post?.content?.length === 0) && (
           <Text>This post has no content</Text>
