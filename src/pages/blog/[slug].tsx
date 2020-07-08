@@ -30,13 +30,16 @@ const SmallMBox = styled(Box)`
 const MediumMBox = styled(Box)`
   margin-bottom: 1rem;
 `
+interface Params {
+  slug: string
+}
 
 // Get the data for each blog post
 export const getStaticProps: GetStaticProps = async function({
   params: { slug },
   preview,
 }: {
-  params: any
+  params: Params
   preview: boolean
 }) {
   // load the postsTable so that we can get the page's ID
@@ -246,7 +249,7 @@ const RenderPost = ({
           if (isList) {
             listTagName = components[type === 'bulleted_list' ? 'ul' : 'ol']
             listLastId = `list${id}`
-
+            console.log('bulleted list')
             listMap[id] = {
               key: id,
               nested: [],
@@ -293,7 +296,10 @@ const RenderPost = ({
 
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
-              <MyHeading key={id}>
+              <MyHeading
+                key={id}
+                style={{ paddingTop: '1rem', paddingBottom: '1rem' }}
+              >
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </MyHeading>
             )
@@ -304,9 +310,13 @@ const RenderPost = ({
             case 'divider':
               break
             case 'text':
-              if (properties) {
-                toRender.push(textBlock(properties.title, false, id))
-              }
+              // if (properties) {
+              //   toRender.push(textBlock(properties.title, false, id))
+              // }
+              // const MarginP = styled.py2`
+              //   margin: auto;
+              // `
+              return <SmallMBox m={2}>{properties.title}</SmallMBox>
               break
             case 'image':
               const { format = {} } = value
@@ -334,6 +344,7 @@ const RenderPost = ({
                     border: 'none',
                     position: 'absolute',
                     top: 0,
+                    padding: '2rem',
                   }
                 : {
                     width,
@@ -341,6 +352,7 @@ const RenderPost = ({
                     height: block_height,
                     display: 'block',
                     maxWidth: '100%',
+                    padding: '2rem',
                   }
               return (
                 <img
@@ -379,6 +391,7 @@ const RenderPost = ({
                     border: 'none',
                     position: 'absolute',
                     top: 0,
+                    padding: '2rem',
                   }
                 : {
                     width,
@@ -386,6 +399,7 @@ const RenderPost = ({
                     height: block_height,
                     display: 'block',
                     maxWidth: '100%',
+                    padding: '2rem',
                   }
 
               let child = null
@@ -413,7 +427,7 @@ const RenderPost = ({
                     loop={!isImage}
                     muted={!isImage}
                     autoPlay={!isImage}
-                    style={childStyle}
+                    style={{ padding: '2rem', ...childStyle }}
                   />
                 )
               }

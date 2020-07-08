@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom">
+    <title>My Blog</title>
+    <subtitle>Blog</subtitle>
+    <link href="/atom" rel="self" type="application/rss+xml"/>
+    <link href="/" />
+    <updated>2020-07-08T14:08:12.625Z</updated>
+    <id>My Notion Blog</id>
+    <entry>
+      <id>/blog/Software,Code,Computer Science,Algorithms</id>
+      <title>Linear Programming</title>
+      <link href="/blog/Software,Code,Computer Science,Algorithms"/>
+      <updated>2020-05-23T04:00:00.271Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>An introduction into the mathematical optimization method linear programming.</p>
+          <p class="more">
+            <a href="/blog/Software,Code,Computer Science,Algorithms">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/Code,Technology,HashiCorp,Cloud Computing,AWS,GCP,Azure</id>
+      <title>HashiCorp who</title>
+      <link href="/blog/Code,Technology,HashiCorp,Cloud Computing,AWS,GCP,Azure"/>
+      <updated>2020-06-25T04:00:00.271Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>What is HashiCorp? Where did it start? And most interestingly, what does it do?</p>
+          <p class="more">
+            <a href="/blog/Code,Technology,HashiCorp,Cloud Computing,AWS,GCP,Azure">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/first-post</id>
+      <title>First Notion Blog Post</title>
+      <link href="/blog/first-post"/>
+      <updated>2020-04-28T04:00:00.271Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>To launch my Notion Blog, this post describes how I found the integration of Vercel and Notion to create a seamless combination.</p>
+          <p class="more">
+            <a href="/blog/first-post">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/IRBT,Investing</id>
+      <title>iRobot Thesis</title>
+      <link href="/blog/IRBT,Investing"/>
+      <updated>2019-12-28T05:00:00.272Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>This post is a fundamental analysis of <a href="https://irobot.com" rel="noopener" target="_blank">iRobot</a>.</p>
+          <p class="more">
+            <a href="/blog/IRBT,Investing">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/Fisher,Fundamentals,Investing</id>
+      <title>Fisher&apos;s Fundamentals</title>
+      <link href="/blog/Fisher,Fundamentals,Investing"/>
+      <updated>2019-12-24T05:00:00.272Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>A return to Fisher&#x27;s fundamental growth-investing.</p>
+          <p class="more">
+            <a href="/blog/Fisher,Fundamentals,Investing">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/Investing,Venture Capital,Fundamentals</id>
+      <title>Venture Capital</title>
+      <link href="/blog/Investing,Venture Capital,Fundamentals"/>
+      <updated>2019-06-17T04:00:00.272Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>This post is a first look into understanding venture capital.</p>
+          <p class="more">
+            <a href="/blog/Investing,Venture Capital,Fundamentals">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/Technology,Blockchain,Software</id>
+      <title>The Blockchain</title>
+      <link href="/blog/Technology,Blockchain,Software"/>
+      <updated>2019-06-11T04:00:00.273Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>An exploration into Blockchain technology.</p>
+          <p class="more">
+            <a href="/blog/Technology,Blockchain,Software">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+    <entry>
+      <id>/blog/TSLA,Fundamentals,Investing,Technology</id>
+      <title>Tesla Thesis</title>
+      <link href="/blog/TSLA,Fundamentals,Investing,Technology"/>
+      <updated>2019-06-03T04:00:00.273Z</updated>
+      <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>First Blog - Is Tesla a buy?</p>
+          <p class="more">
+            <a href="/blog/TSLA,Fundamentals,Investing,Technology">Read more</a>
+          </p>
+        </div>
+      </content>
+      <author><name>Andreas Bigger</name></author>
+    </entry>
+  </feed>
