@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { GetStaticProps } from 'next'
+import dynamic from 'next/dynamic'
 import { Header, Footer, BlogPost } from '../../components'
 import useSWR from 'swr'
 import {
@@ -196,6 +197,9 @@ export default ({
   )
 }
 
+// * Fetch home.json dynamically
+//const HomeJSON = dynamic(() => import('../../content/home.json'))
+
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
@@ -236,6 +240,8 @@ export const getStaticProps: GetStaticProps = async function({
     post.Authors = post.Authors.map(id => users[id].full_name)
   })
 
+  const HomeJSON = (await import('../../content/home.json')).default
+
   return {
     props: {
       sourceProvider: null,
@@ -244,7 +250,7 @@ export const getStaticProps: GetStaticProps = async function({
       posts,
       file: {
         fileRelativePath: 'content/home.json',
-        data: (await import('../../content/home.json')).default,
+        data: HomeJSON,
       },
     },
   }

@@ -71,7 +71,7 @@ export default ({ titlePre = '' }) => {
           name="keywords"
           content="Andreas Bigger Notion Blog Person Website Developer Viterbi USC"
         />
-        <script src="./jquery.min.js"></script>
+        <script src="/jquery.min.js"></script>
         <title>{titlePre ? `${titlePre} |` : ''} Andreas Bigger</title>
         <meta name="og:title" content="Andreas Bigger Notion Blog" />
         <meta property="og:image" content={ogImageUrl} />

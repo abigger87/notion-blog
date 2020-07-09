@@ -14,7 +14,7 @@ export const postIsPublished = (post: any) => {
   return post.Published === 'Yes'
 }
 
-export const normalizeSlug = slug => {
+export const normalizeSlug = (slug: string) => {
   if (typeof slug !== 'string') return slug
 
   let startingSlash = slug.startsWith('/')
