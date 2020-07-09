@@ -10,7 +10,9 @@ import {
   Heading as MyHeading,
   Footer,
   components,
+  Bookmark,
 } from '../../components'
+import Iframe from 'react-iframe'
 import ReactJSXParser from '@zeit/react-jsx-parser'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
@@ -20,7 +22,7 @@ import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
 import { GetStaticProps } from 'next'
 
-import { Text, Stack, Heading, Divider, Box } from '@chakra-ui/core'
+import { Text, Stack, Heading, Divider, Box, Link, Flex } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 const SmallMBox = styled(Box)`
@@ -32,6 +34,25 @@ const MediumMBox = styled(Box)`
 `
 interface Params {
   slug: string
+}
+
+// * Function to extract hostname
+const extractHostname = url => {
+  var hostname
+  //find & remove protocol (http, ftp, etc.) and get hostname
+
+  if (url.indexOf('//') > -1) {
+    hostname = url.split('/')[2]
+  } else {
+    hostname = url.split('/')[0]
+  }
+
+  //find & remove port number
+  hostname = hostname.split(':')[0]
+  //find & remove "?"
+  hostname = hostname.split('?')[0]
+
+  return hostname
 }
 
 // Get the data for each blog post
@@ -77,6 +98,9 @@ export const getStaticProps: GetStaticProps = async function({
       if (!tweetId) continue
 
       try {
+        console.log(
+          `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
+        )
         const res = await fetch(
           `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
         )
@@ -178,6 +202,10 @@ const RenderPost = ({
         const script = document.createElement('script')
         script.async = true
         script.src = twitterSrc
+        script.style.marginLeft = 'auto'
+        script.style.marginRight = 'auto'
+        script.style.marginTop = '2rem'
+        script.style.marginBottom = '2rem'
         document.querySelector('body').appendChild(script)
       }
     }
@@ -224,16 +252,18 @@ const RenderPost = ({
         px={6}
         maxWidth="700px"
       >
-        <Heading style={{ marginBottom: '1rem' }} as="h1" size="md">
+        <Heading mb={2} m={2} as="h1" size="md">
           {post.Page || ''}
         </Heading>
         {post?.Authors?.length > 0 && (
-          <SmallMBox m={0}>By: {post.Authors.join(' ')}</SmallMBox>
+          <SmallMBox m={2}>By: {post.Authors.join(' ')}</SmallMBox>
         )}
         {post.Date && (
-          <SmallMBox m={0}>Posted: {getDateStr(post.Date)}</SmallMBox>
+          <SmallMBox m={2}>Posted: {getDateStr(post.Date)}</SmallMBox>
         )}
-        <MediumMBox>{views ? format(views) : '–––'} views</MediumMBox>
+        <MediumMBox m={2} mb={4}>
+          {views ? format(views) : '–––'} views
+        </MediumMBox>
 
         {(!post.content || post?.content?.length === 0) && (
           <Text>This post has no content</Text>
@@ -249,7 +279,6 @@ const RenderPost = ({
           if (isList) {
             listTagName = components[type === 'bulleted_list' ? 'ul' : 'ol']
             listLastId = `list${id}`
-            console.log('bulleted list')
             listMap[id] = {
               key: id,
               nested: [],
@@ -298,7 +327,12 @@ const RenderPost = ({
             toRender.push(
               <MyHeading
                 key={id}
-                style={{ paddingTop: '1rem', paddingBottom: '1rem' }}
+                style={{
+                  marginLeft: '0.5rem',
+                  marginRight: '0.5rem',
+                  marginTop: '1rem',
+                  marginBottom: '0.5rem',
+                }}
               >
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </MyHeading>
@@ -308,15 +342,47 @@ const RenderPost = ({
           switch (type) {
             case 'page':
             case 'divider':
+              return <Divider m={1} />
               break
             case 'text':
-              // if (properties) {
-              //   toRender.push(textBlock(properties.title, false, id))
-              // }
-              // const MarginP = styled.py2`
-              //   margin: auto;
-              // `
-              return <SmallMBox m={2}>{properties.title}</SmallMBox>
+              return (
+                <SmallMBox m={2}>
+                  {properties
+                    ? properties.title.map((text, index) => {
+                        return (
+                          <>
+                            {text.map((text2, index2) => {
+                              if (
+                                index2 < text.length - 1 &&
+                                Array.isArray(text[index2 + 1])
+                              ) {
+                                if (text[index2 + 1][0][0] === 'a') {
+                                  let link = text[index2 + 1][0][1]
+                                  text[index2 + 1] = ''
+                                  return (
+                                    <a key={text2} href={`${link}`}>
+                                      {text2}
+                                    </a>
+                                  )
+                                } else {
+                                  let attribute = text[index2 + 1][0][0]
+                                  console.log(attribute)
+                                  text[index2 + 1] = ''
+                                  return (
+                                    <Text as={`${attribute}`}>{text2}</Text>
+                                  )
+                                }
+                              } else if (text2.length) {
+                                return text2
+                              }
+                              return <></>
+                            })}
+                          </>
+                        )
+                      })
+                    : ''}
+                </SmallMBox>
+              )
               break
             case 'image':
               const { format = {} } = value
@@ -345,6 +411,7 @@ const RenderPost = ({
                     position: 'absolute',
                     top: 0,
                     padding: '2rem',
+                    paddingBottom: '0',
                   }
                 : {
                     width,
@@ -353,15 +420,22 @@ const RenderPost = ({
                     display: 'block',
                     maxWidth: '100%',
                     padding: '2rem',
+                    paddingBottom: '0',
                   }
+              const caption = value?.properties?.caption[0][0]
               return (
-                <img
-                  key={!useWrapper ? id : undefined}
-                  src={`/api/asset?assetUrl=${encodeURIComponent(
-                    value.properties.source[0][0] as string
-                  )}&blockId=${id}`}
-                  style={childStyle}
-                />
+                <>
+                  <img
+                    key={!useWrapper ? id : undefined}
+                    src={`/api/asset?assetUrl=${encodeURIComponent(
+                      value.properties.source[0][0] as string
+                    )}&blockId=${id}`}
+                    style={childStyle}
+                  />
+                  <Text mt={2} mb={4} textAlign="center" mx="auto">
+                    {caption}
+                  </Text>
+                </>
               )
             case 'video':
             case 'embed': {
@@ -380,10 +454,17 @@ const RenderPost = ({
                     (block_width / baseBlockWidth) * 100 * roundFactor
                   ) / roundFactor}%`
                 : block_height || '100%'
-
+              const height = block_height
+                ? `${Math.round(
+                    (block_height / (baseBlockWidth / 2)) * 100 * roundFactor
+                  ) / roundFactor}%`
+                : block_height || '100%'
               const isImage = type === 'image'
               const Comp = isImage ? 'img' : 'video'
-              const useWrapper = block_aspect_ratio && !block_height
+              let useWrapper = block_aspect_ratio && !block_height
+              if (Comp == 'video') {
+                useWrapper = false
+              }
               const childStyle: CSSProperties = useWrapper
                 ? {
                     width: '100%',
@@ -392,28 +473,45 @@ const RenderPost = ({
                     position: 'absolute',
                     top: 0,
                     padding: '2rem',
+                    margin: 'auto',
+                    minWidth: 'auto !important',
                   }
                 : {
                     width,
                     border: 'none',
-                    height: block_height,
+                    height,
                     display: 'block',
                     maxWidth: '100%',
                     padding: '2rem',
+                    margin: 'auto',
+                    minWidth: 'auto !important',
                   }
 
               let child = null
 
               if (!isImage && !value.file_ids) {
                 // external resource use iframe
-                child = (
-                  <iframe
-                    style={childStyle}
-                    src={display_source}
-                    key={!useWrapper ? id : undefined}
-                    className={!useWrapper ? 'asset-wrapper' : undefined}
-                  />
+                const StyledIframe = styled(Iframe)`
+                  width: 60vw;
+                  height: 30vw;
+                  min-width: 100px;
+                  min-height: 60px;
+                  max-height: 300px;
+                  max-width: 500px;
+                `
+
+                return (
+                  <Box my={8} mx="auto">
+                    <StyledIframe
+                      url={display_source}
+                      id={!useWrapper ? id : display_source}
+                      className="asset-wrapper"
+                      display="initial"
+                      position="relative"
+                    />
+                  </Box>
                 )
+                break
               } else {
                 // notion resource
                 child = (
@@ -489,12 +587,18 @@ const RenderPost = ({
             }
             case 'quote': {
               if (properties.title) {
-                toRender.push(
-                  React.createElement(
-                    components.blockquote,
-                    { key: id },
-                    properties.title
-                  )
+                return (
+                  <Flex mx={2} my={8}>
+                    <Divider orientation="vertical" borderWidth="6px" />
+                    <SmallMBox m={2}>
+                      {properties.title
+                        .join()
+                        .split('\n')
+                        .map(i => {
+                          return <p>{i}</p>
+                        })}
+                    </SmallMBox>
+                  </Flex>
                 )
               }
               break
@@ -521,6 +625,26 @@ const RenderPost = ({
                   />
                 )
               }
+              break
+            }
+            case 'bookmark': {
+              return (
+                <Box m={4}>
+                  <Bookmark
+                    icon={`http://www.google.com/s2/favicons?domain=${extractHostname(
+                      properties.link[0][0]
+                    )}`}
+                    title={properties.title[0][0]}
+                    description={properties.description[0][0]}
+                    href={properties.link[0][0]}
+                  />
+                </Box>
+              )
+              break
+            }
+            case 'toggle': {
+              console.log(value)
+              return <Box m={4}></Box>
               break
             }
             default:

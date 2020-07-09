@@ -26,13 +26,12 @@ export default ({
       .replace(/[?!:]/g, '')
   }
 
-  console.log('style: ' + style)
-  console.log(style)
-
   return (
-    <a href={`#${id}`} id={id} style={{ color: 'inherit', ...style }}>
-      {console.log('style: ' + style)}
-      {console.log(style)}
+    <a
+      href={`#${id}`}
+      style={{ position: 'relative', color: 'inherit', ...style }}
+    >
+      <span style={{ position: 'absolute', top: '-5rem' }} id={id}></span>
       {component}
     </a>
   )
