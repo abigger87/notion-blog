@@ -77,6 +77,13 @@ export default ({ file }: { file: any }) => {
             icon="hacksc"
           />
           <ProjectCard
+            title="Spatial Computing Lab"
+            description="Undergraduate research researching traffic analytics and developing a web
+            dashboard for real-time visualization under Professor Yao-Yi Chiang."
+            href="https://adms.usc.edu/app"
+            icon="adms"
+          />
+          <ProjectCard
             title="HackSC 2019"
             description="As a team member of Hacker Experience, I built relationships between our team and sponsors as well as perform a massive campaign, garnering over 15 CEOs to attend, speak, and judge at our event."
             href="https://2019.hacksc.com/"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { theme as chakraTheme } from '@chakra-ui/core'
-import hacksc from './hacksc'
+import { hacksc, adms } from './'
 
 const theme = {
   ...chakraTheme,
@@ -35,6 +35,10 @@ const theme = {
     ...chakraTheme.icons,
     hacksc: {
       path: hacksc,
+      viewBox: '0 0 350 350',
+    },
+    adms: {
+      path: adms,
       viewBox: '0 0 350 350',
     },
     twitter: {
