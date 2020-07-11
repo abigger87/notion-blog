@@ -11,6 +11,7 @@ import {
   Footer,
   components,
   Bookmark,
+  FallbackBlogPage,
 } from '../../components'
 import Iframe from 'react-iframe'
 import ReactJSXParser from '@zeit/react-jsx-parser'
@@ -22,7 +23,7 @@ import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
 import { GetStaticProps } from 'next'
 
-import { Text, Stack, Heading, Divider, Box, Link, Flex } from '@chakra-ui/core'
+import { Text, Stack, Heading, Divider, Box, Flex } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 const SmallMBox = styled(Box)`
@@ -32,6 +33,7 @@ const SmallMBox = styled(Box)`
 const MediumMBox = styled(Box)`
   margin-bottom: 1rem;
 `
+
 interface Params {
   slug: string
 }
@@ -217,7 +219,13 @@ const RenderPost = ({
   }, [redirect, post])
 
   if (router.isFallback) {
-    return <Box>Loading...</Box>
+    return (
+      <FallbackBlogPage
+        title={title}
+        description={description}
+        posturl={posturl}
+      />
+    )
   }
 
   if (!post) {
