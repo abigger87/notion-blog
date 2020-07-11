@@ -342,7 +342,9 @@ const RenderPost = ({
                   marginBottom: '0.5rem',
                 }}
               >
-                <Type key={id}>{textBlock(properties.title, true, id)}</Type>
+                <Heading as={Type} size="md">
+                  {textBlock(properties.title, true, id)}
+                </Heading>
               </MyHeading>
             )
           }
@@ -374,14 +376,27 @@ const RenderPost = ({
                                   )
                                 } else {
                                   let attribute = text[index2 + 1][0][0]
-                                  console.log(attribute)
+                                  let font_weight = 400
+                                  let font_style = 'none'
+                                  if (attribute == 'b') {
+                                    font_weight = 700
+                                  } else if (attribute == 'i') {
+                                    font_style = 'italic'
+                                  }
                                   text[index2 + 1] = ''
                                   return (
-                                    <Text as={`${attribute}`}>{text2}</Text>
+                                    <Box
+                                      as="span"
+                                      fontStyle={font_style}
+                                      fontWeight={font_weight}
+                                    >
+                                      {text2}
+                                    </Box>
                                   )
                                 }
                               } else if (text2.length) {
-                                return text2
+                                console.log(text2)
+                                return <Box as="span">{text2}</Box>
                               }
                               return <></>
                             })}
@@ -651,7 +666,6 @@ const RenderPost = ({
               break
             }
             case 'toggle': {
-              console.log(value)
               return <Box m={4}></Box>
               break
             }
