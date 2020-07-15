@@ -31,7 +31,7 @@ if ('fetch' in window) {
   badge.insertAdjacentHTML('beforeEnd', css),
     badge.insertAdjacentHTML(
       'beforeEnd',
-      '<div id="wcb_p"><p id="wcb_g">Measuring CO<sub>2</sub>&hellip;</p><a target="_blank" rel="noopener" href="https://websitecarbon.com">Website Carbon</a></div><p id="wcb_2"></p>'
+      '<div id="wcb_p"><p id="wcb_g">Measuring CO<sub>2</sub>&hellip;</p><a target="_blank" rel="noopener" href="https://websitecarbon.com">Carbon</a></div><p id="wcb_2"></p>'
     )
   let e = localStorage.getItem('wcb_' + url)
   const n = new Date().getTime()

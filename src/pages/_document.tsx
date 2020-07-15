@@ -31,16 +31,16 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <script
+          {/*<script
             src="https://unpkg.com/website-carbon-badges@^1/b.min.js"
             defer
-          ></script>
+          ></script>*/}
+          <script type="text/javascript" src="/carbon.js" defer></script>
           <script type="text/javascript" src="/soundcloud.js"></script>
         </Head>
         <body>
           <Main />
           <NextScript />
-          {/*<script type="text/javascript" src="/carbon.js"></script>*/}
         </body>
       </Html>
     )
