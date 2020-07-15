@@ -30,10 +30,17 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script
+            src="https://unpkg.com/website-carbon-badges@^1/b.min.js"
+            defer
+          ></script>
+          <script type="text/javascript" src="/soundcloud.js"></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
+          {/*<script type="text/javascript" src="/carbon.js"></script>*/}
         </body>
       </Html>
     )

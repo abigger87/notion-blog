@@ -395,7 +395,6 @@ const RenderPost = ({
                                   )
                                 }
                               } else if (text2.length) {
-                                console.log(text2)
                                 return <Box as="span">{text2}</Box>
                               }
                               return <></>
