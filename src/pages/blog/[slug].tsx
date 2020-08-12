@@ -666,6 +666,17 @@ const RenderPost = ({
           }
           return toRender
         })}
+        <Box mmx="auto" mt={4}>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="abigger87/notion-blog"
+            issue-term="pathname"
+            label="utterance"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </Box>
         <Box mx="auto" mt={4}>
           <Footer
             twitter={'https://twitter.com/abigger87'}
