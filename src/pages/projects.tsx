@@ -73,7 +73,7 @@ export default ({ file }: { file: any }) => {
           <ProjectCard
             title="CME Group 2020"
             description="Worked on Platform Engineering (DevOps) to migrate legacy docker images from docker swarm to Kubernetes. Built a Groovy/Java Framework to create application repositories flushed with webhooks to trigger Jenkins Pipelines. The Framework automated the process of deploying an app into Kubernetes. Also, created a Groovy Framework to lint and validate Dockerfiles on the opening of a pull request."
-            href="https://2021.hacksc.com/"
+            href="https://cmegroup.com/"
             icon="hacksc"
           />
           <ProjectCard
