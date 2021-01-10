@@ -2,11 +2,13 @@
   "build": {
     "env": {
       "NOTION_TOKEN": "@notion-token",
-      "BLOG_INDEX_ID": "@blog-index-id"
+      "BLOG_INDEX_ID": "@blog-index-id",
+      "BUTTONDOWN_API_KEY": "@button-down-api-key"
     }
   },
   "env": {
     "NOTION_TOKEN": "@notion-token",
-    "BLOG_INDEX_ID": "@blog-index-id"
+    "BLOG_INDEX_ID": "@blog-index-id",
+    "BUTTONDOWN_API_KEY": "@button-down-api-key"
   }
 }

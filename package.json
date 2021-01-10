@@ -44,6 +44,7 @@
     "node-fetch": "^2.6.0",
     "prismjs": "^1.17.1",
     "react": "16.12.0",
+    "react-carbonbadge": "^1.0.1",
     "react-dom": "16.12.0",
     "react-github-calendar": "^1.0.4",
     "react-hotjar": "^2.2.0",

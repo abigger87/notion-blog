@@ -7274,6 +7274,11 @@ react-beautiful-dnd@^11.0.5:
     tiny-invariant "^1.0.4"
     use-memo-one "^1.1.0"
 
+react-carbonbadge@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-carbonbadge/-/react-carbonbadge-1.0.1.tgz#6bc374f6c2cd208ea5eeb918e72a149a21773098"
+  integrity sha512-5/hgs/4Sv8aJLnjA9Qbcel+wu1uN64Q0tpNlYdb0k36kgOzFBRVmG0GL8X8LaAPWuSBoNeDEyWmy3vDlKascJA==
+
 react-clientside-effect@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.3.tgz#95c95f520addfb71743608b990bfe01eb002012b"

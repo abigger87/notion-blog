@@ -2,11 +2,11 @@ import NextLink from 'next/link'
 import Head from 'next/head'
 import ExtLink from './Extlink'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
+import $ from 'jquery'
 
 import styled from '@emotion/styled'
 import { useColorMode, Button, Flex, Box, IconButton } from '@chakra-ui/core'
-import styles from '../styles/header.module.css'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },
@@ -28,34 +28,72 @@ const Header = ({ titlePre = '' }) => {
   const { pathname } = useRouter()
   const { colorMode, toggleColorMode }: color = useColorMode()
 
-  const bgColor = {
-    light: 'white',
-    dark: 'gray.900',
-  }
-  const primarytextColor = {
-    light: 'black',
-    dark: 'white',
-  }
-  const navBgColor = {
-    light: 'rgba(255, 255, 255, 0.8)',
-    dark: 'rgba(23, 25, 35, 0.8)',
-  }
+  useEffect(() => {
+    var $q = e => document.getElementById(e),
+      url = encodeURIComponent(window.location.href),
+      newRequest = function(e = !0) {
+        fetch('https://api.websitecarbon.com/b?url=' + url)
+          .then(function(e: any) {
+            if (!e.ok) throw Error(e)
+            return e.json()
+          })
+          .then(function(n) {
+            e && renderResult(n),
+              (n.t = new Date().getTime()),
+              localStorage.setItem('wcb_' + url, JSON.stringify(n))
+          })
+          .catch(function(e) {
+            ;($q('wcb_g').innerHTML = 'No Result'),
+              console.log(e),
+              localStorage.removeItem('wcb_' + url)
+          })
+      },
+      renderResult = function(e) {
+        ;($q('wcb_g').innerHTML = e.c + 'g of CO<sub>2</sub>/view'),
+          $q('wcb_2').insertAdjacentHTML(
+            // @ts-ignore
+            'beforeEnd',
+            'Cleaner than ' + e.p + '% of pages tested'
+          )
+      },
+      css =
+        '<style>.carbonbadge{--b1:#0e11a8;--b2:#00ffbc;font-size:15px;line-height:1.15;text-align:center;color:var(--b1)}.carbonbadge sub{vertical-align:middle;position:relative;top:.3em;font-size:.7em}.carbonbadge a,.carbonbadge p{text-align:center;display:inline-flex;justify-content:center;align-items:center;font-size:1em;margin:.2em 0;line-height:1.15;font-family:-apple-system,BlinkMacSystemFont,sans-serif}#wcb_g,.carbonbadge a{padding:.3em .5em;background:#fff;border:.13em solid var(--b2);border-radius:.3em 0 0 .3em}#wcb_g{border-right:0;min-width:8.2em}.carbonbadge a{border-radius:0 .3em .3em 0;border-left:0;background:var(--b1);color:#fff;text-decoration:none;font-weight:700;border-color:var(--b1)}.wcb-d #wcb_2{color:#fff}.carbonbadge.wcb-d a{color:var(--b1);background:var(--b2);border-color:var(--b2)}</style>',
+      badge = $q('wcb')
+    if ('fetch' in window) {
+      badge.insertAdjacentHTML(
+        // @ts-ignore
+        'beforeEnd',
+        css
+      ),
+        badge.insertAdjacentHTML(
+          // @ts-ignore
+          'beforeEnd',
+          '<div id="wcb_p"><p id="wcb_g">Measuring CO<sub>2</sub>&hellip;</p><a target="_blank" rel="noopener" href="https://websitecarbon.com">Carbon</a></div><p id="wcb_2"></p>'
+        )
+      let e = localStorage.getItem('wcb_' + url)
+      var n = new Date().getTime()
+      if (e) {
+        var t = JSON.parse(e)
+        renderResult(t), n - t.t > 864e5 && newRequest(!1)
+      } else newRequest()
+    }
+  }, [])
 
   const StickyNav = styled(Flex)`
-  position: sticky;
-  z-index: 10;
-  top: 0;
-  background: ${colorMode === 'light' ? 'white' : '#171923'};
-          background-image: ${
-            colorMode === 'light'
-              ? `radial-gradient(#AAAAAA 1px, transparent 1px),
-          radial-gradient(#AAAAAA 1px, transparent 1px);`
-              : `radial-gradient(#DDDDDD 1px, transparent 1px),
-          radial-gradient(#DDDDDD 1px, transparent 1px);`
-          }
-          background-position: 0 0, 25px 25px;
-          background-attachment: fixed;
-          background-size: 50px 50px;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background: ${colorMode === 'light' ? 'white' : '#171923'};
+    background-image: ${
+      colorMode === 'light'
+        ? `radial-gradient(#AAAAAA 1px, transparent 1px),
+    radial-gradient(#AAAAAA 1px, transparent 1px);`
+        : `radial-gradient(#DDDDDD 1px, transparent 1px),
+    radial-gradient(#DDDDDD 1px, transparent 1px);`
+    }
+    background-position: 0 0, 25px 25px;
+    background-attachment: fixed;
+    background-size: 50px 50px;
   `
 
   return (

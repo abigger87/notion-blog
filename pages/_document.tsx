@@ -31,15 +31,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <script
-            src="https://unpkg.com/website-carbon-badges@^1/b.min.js"
-            defer
-          ></script>
-          {typeof window !== 'undefined' ? (
-            <script type="text/javascript" src="/carbon.js" defer></script>
-          ) : (
-            ''
-          )}
           <script type="text/javascript" src="/soundcloud.js"></script>
         </Head>
         <body>

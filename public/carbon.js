@@ -1,4 +1,4 @@
-const $q = e => document.getElementById(e),
+var $q = e => document.getElementById(e),
   url = encodeURIComponent(window.location.href),
   newRequest = function(e = !0) {
     fetch('https://api.websitecarbon.com/b?url=' + url)
@@ -34,9 +34,9 @@ if ('fetch' in window) {
       '<div id="wcb_p"><p id="wcb_g">Measuring CO<sub>2</sub>&hellip;</p><a target="_blank" rel="noopener" href="https://websitecarbon.com">Carbon</a></div><p id="wcb_2"></p>'
     )
   let e = localStorage.getItem('wcb_' + url)
-  const n = new Date().getTime()
+  var n = new Date().getTime()
   if (e) {
-    const t = JSON.parse(e)
+    var t = JSON.parse(e)
     renderResult(t), n - t.t > 864e5 && newRequest(!1)
   } else newRequest()
 }
