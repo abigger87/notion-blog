@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -11,9 +12,25 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.png",
+    "**/*.svg",
+    "**/*.json"
+  ]
 }
