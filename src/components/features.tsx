@@ -1,11 +1,13 @@
-import Lightning from './svgs/lightning'
-import Jamstack from './svgs/jamstack'
-import Wifi from './svgs/wifi'
-import Lighthouse from './svgs/lighthouse'
-import Plus from './svgs/plus'
-import Notion from './svgs/notion'
-import Edit from './svgs/edit'
-import Scroll from './svgs/scroll'
+import {
+  Lightning,
+  Jamstack,
+  Wifi,
+  Lighthouse,
+  Plus,
+  Notion,
+  Edit,
+  Scroll,
+} from './svgs'
 
 const features = [
   {
@@ -42,7 +44,7 @@ const features = [
   },
 ]
 
-export default () => (
+const Features = () => (
   <div className="features">
     {features.map(({ text, icon: Icon }) => (
       <div className="feature" key={text}>
@@ -52,3 +54,5 @@ export default () => (
     ))}
   </div>
 )
+
+export default Features

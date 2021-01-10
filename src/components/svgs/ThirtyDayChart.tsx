@@ -7,7 +7,7 @@ interface color {
   toggleColorMode: any
 }
 
-export default () => {
+const ThirtyDayChart = () => {
   const { colorMode }: color = useColorMode()
 
   return colorMode === 'light' ? (
@@ -35,3 +35,5 @@ export default () => {
       </div>
     )*/
 }
+
+export default ThirtyDayChart

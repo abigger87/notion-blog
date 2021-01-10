@@ -1,5 +1,5 @@
 import React from 'react'
-import components from '../../components/dynamic'
+import { components } from '../../components'
 
 function applyTags(tags = [], children, noPTag = false, key) {
   let child = children

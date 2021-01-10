@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import Head from 'next/head'
-import ExtLink from './ext-link'
+import ExtLink from './Extlink'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -24,7 +24,7 @@ interface color {
   toggleColorMode: any
 }
 
-export default ({ titlePre = '' }) => {
+const Header = ({ titlePre = '' }) => {
   const { pathname } = useRouter()
   const { colorMode, toggleColorMode }: color = useColorMode()
 
@@ -232,3 +232,5 @@ export default ({ titlePre = '' }) => {
     </>
   )
 }
+
+export default Header

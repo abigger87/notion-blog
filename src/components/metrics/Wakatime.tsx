@@ -10,7 +10,7 @@ import {
 } from '.'
 import { SimpleGrid } from '@chakra-ui/core'
 
-export default ({
+const Wakatime = ({
   link,
   range,
   children,
@@ -73,3 +73,5 @@ export default ({
     </>
   )
 }
+
+export default Wakatime

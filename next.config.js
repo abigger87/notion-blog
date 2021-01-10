@@ -44,6 +44,7 @@ if (!BLOG_INDEX_ID) {
   )
 }
 
+const runtimeCaching = require('next-pwa/cache')
 const withImages = require('next-images')
 
 module.exports = withImages(
@@ -52,6 +53,10 @@ module.exports = withImages(
       GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
       REPO_FULL_NAME: process.env.REPO_FULL_NAME,
       BASE_BRANCH: process.env.BASE_BRANCH,
+    },
+    pwa: {
+      dest: 'public',
+      runtimeCaching,
     },
     target: 'experimental-serverless-trace',
 
@@ -76,9 +81,6 @@ module.exports = withImages(
         return entries
       }
       return cfg
-    },
-    pwa: {
-      dest: 'public',
     },
   })
 )
