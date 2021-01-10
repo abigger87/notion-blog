@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React from 'react'
+import React from '@/lib/node_modules/react'
 import { NextSeo } from 'next-seo'
 import {
   useColorMode,

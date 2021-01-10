@@ -354,6 +354,7 @@ async function getExistingexistingBlockId() {
 }
 
 async function getUserId() {
+  console.log(`${API_ENDPOINT}/loadUserContent`)
   const res = await fetch(`${API_ENDPOINT}/loadUserContent`, {
     method: 'POST',
     headers: {
@@ -372,4 +373,5 @@ async function getUserId() {
   return Object.keys(data.recordMap.notion_user)[0]
 }
 
-module.exports = main
+export default main
+export { getExistingexistingBlockId, getUserId }

@@ -1,10 +1,7 @@
 const fs = require('fs')
 require('dotenv').config()
 const path = require('path')
-const {
-  NOTION_TOKEN,
-  BLOG_INDEX_ID,
-} = require('./src/lib/notion/server-constants')
+const { NOTION_TOKEN, BLOG_INDEX_ID } = require('./lib/notion/server-constants')
 const withPWA = require('next-pwa')
 var webpack = require('webpack')
 
@@ -77,7 +74,7 @@ module.exports = withImages(
       const originalEntry = cfg.entry
       cfg.entry = async () => {
         const entries = { ...(await originalEntry()) }
-        entries['./scripts/build-rss.js'] = './src/lib/build-rss.ts'
+        entries['./scripts/build-rss.js'] = './lib/build-rss.ts'
         return entries
       }
       return cfg

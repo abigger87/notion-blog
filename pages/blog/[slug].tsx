@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch'
 import useSWR from 'swr'
 import { NextSeo } from 'next-seo'
@@ -26,11 +25,11 @@ import { GetStaticProps } from 'next'
 import { Text, Stack, Heading, Divider, Box, Flex } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-const SmallMBox = styled(Box)`
+const SmallMBox: any = styled(Box)`
   margin-bottom: 0.5rem;
 `
 
-const MediumMBox = styled(Box)`
+const MediumMBox: any = styled(Box)`
   margin-bottom: 1rem;
 `
 
@@ -58,7 +57,7 @@ const extractHostname = url => {
 }
 
 // Get the data for each blog post
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps | any = async function({
   params: { slug },
   preview,
 }: {
@@ -331,7 +330,7 @@ const RenderPost = ({
             listTagName = null
           }
 
-          const renderHeading = (Type: string | React.ComponentType) => {
+          const renderHeading = (Type: any | React.ComponentType) => {
             toRender.push(
               <MyHeading
                 key={id}
@@ -343,7 +342,7 @@ const RenderPost = ({
                 }}
               >
                 <Heading as={Type} size="md">
-                  {textBlock(properties.title, true, id)}
+                  <>{textBlock(properties.title, true, id)}</>
                 </Heading>
               </MyHeading>
             )
@@ -513,7 +512,7 @@ const RenderPost = ({
 
               if (!isImage && !value.file_ids) {
                 // external resource use iframe
-                const StyledIframe = styled(Iframe)`
+                const StyledIframe: any = styled(Iframe)`
                   width: 60vw;
                   height: 30vw;
                   min-width: 100px;
@@ -679,9 +678,10 @@ const RenderPost = ({
           }
           return toRender
         })}
-        <Box mmx="auto" mt={4}>
+        <Box mx="auto" mt={4}>
           <script
             src="https://utteranc.es/client.js"
+            // @ts-ignore
             repo="abigger87/notion-blog"
             issue-term="pathname"
             label="utterance"

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { GetStaticProps } from 'next'
-import dynamic from 'next/dynamic'
-import { Header, Footer, BlogPost } from '../../components'
+import { Header, Footer, BlogPost } from '@/components'
 import useSWR from 'swr'
 import {
   useGithubJsonForm,

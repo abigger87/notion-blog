@@ -1,4 +1,4 @@
-import React from 'react'
+import React from '@/lib/node_modules/react'
 import { GetStaticProps } from 'next'
 import { useColorMode, Heading, Text, Flex, Stack } from '@chakra-ui/core'
 

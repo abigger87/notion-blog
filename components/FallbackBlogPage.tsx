@@ -1,23 +1,15 @@
 import { NextSeo } from 'next-seo'
-import styled from '@emotion/styled'
-import {
-  Text,
-  Stack,
-  Heading,
-  Divider,
-  Box,
-  Skeleton,
-  Flex,
-} from '@chakra-ui/core'
+import styled, { StyledComponent } from '@emotion/styled'
+import { Stack, Heading, Box, BoxProps } from '@chakra-ui/core'
 
 // * Importing custom components
-import { Header, SkeletonBlock, Heading as MyHeading } from './'
+import { Header, SkeletonBlock, Heading as MyHeading } from '.'
 
-const SmallMBox = styled(Box)`
+const SmallMBox: any = styled(Box)`
   margin-bottom: 0.5rem;
 `
 
-const MediumMBox = styled(Box)`
+const MediumMBox: any = styled(Box)`
   margin-bottom: 1rem;
 `
 

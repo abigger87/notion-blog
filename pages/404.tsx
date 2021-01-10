@@ -1,4 +1,4 @@
-import React from 'react'
+import React from '@/lib/notion/node_modules/react'
 import NextLink from 'next/link'
 import Header from '../components/Header'
 import {

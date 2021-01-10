@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import ExtLink from './ext-link'
+import ExtLink from './Extlink'
 
 export default {
   // default tags
@@ -10,6 +10,6 @@ export default {
   blockquote: 'blockquote',
   a: ExtLink,
 
-  Code: dynamic(() => import('./code')),
-  Counter: dynamic(() => import('./counter')),
+  Code: dynamic(() => import('./Code')),
+  Counter: dynamic(() => import('./Counter')),
 }
