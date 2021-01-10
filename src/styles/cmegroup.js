@@ -1,4 +1,4 @@
-import cmegroup from '../../public/cmegroup.jpg'
+import cmegroup from '../../public/cmegroup.png'
 
 const CMEGroup = <img src={cmegroup} alt="CME Group" />
 
