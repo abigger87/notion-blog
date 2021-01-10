@@ -37,6 +37,7 @@
     "googleapis": "^51.0.0",
     "jquery": "3.5.0",
     "next": "^9.3.2",
+    "next-images": "^1.6.2",
     "next-pwa": "^2.4.1",
     "next-seo": "^4.5.0",
     "next-tinacms-github": "^0.1.0",

@@ -44,37 +44,41 @@ if (!BLOG_INDEX_ID) {
   )
 }
 
-module.exports = withPWA({
-  env: {
-    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
-    BASE_BRANCH: process.env.BASE_BRANCH,
-  },
-  target: 'experimental-serverless-trace',
+const withImages = require('next-images')
 
-  webpack(cfg, { dev, isServer }) {
-    cfg.plugins.push(
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-      })
-    )
+module.exports = withImages(
+  withPWA({
+    env: {
+      GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+      REPO_FULL_NAME: process.env.REPO_FULL_NAME,
+      BASE_BRANCH: process.env.BASE_BRANCH,
+    },
+    target: 'experimental-serverless-trace',
 
-    // only compile build-rss in production server build
-    if (dev || !isServer) return cfg
+    webpack(cfg, { dev, isServer }) {
+      cfg.plugins.push(
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+        })
+      )
 
-    // we're in build mode so enable shared caching for Notion data
-    process.env.USE_CACHE = 'true'
+      // only compile build-rss in production server build
+      if (dev || !isServer) return cfg
 
-    const originalEntry = cfg.entry
-    cfg.entry = async () => {
-      const entries = { ...(await originalEntry()) }
-      entries['./scripts/build-rss.js'] = './src/lib/build-rss.ts'
-      return entries
-    }
-    return cfg
-  },
-  pwa: {
-    dest: 'public',
-  },
-})
+      // we're in build mode so enable shared caching for Notion data
+      process.env.USE_CACHE = 'true'
+
+      const originalEntry = cfg.entry
+      cfg.entry = async () => {
+        const entries = { ...(await originalEntry()) }
+        entries['./scripts/build-rss.js'] = './src/lib/build-rss.ts'
+        return entries
+      }
+      return cfg
+    },
+    pwa: {
+      dest: 'public',
+    },
+  })
+)
