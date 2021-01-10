@@ -10,16 +10,16 @@ const CMEGroup = (
     xmlnsxlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    width="980px"
-    height="600px"
-    viewBox="0 0 980 600"
-    enable-background="new 0 0 980 600"
+    viewBox="0 0 600 300"
+    width="1000"
+    height="500"
+    enable-background="new 0 0 600 300"
     xmlspace="preserve"
   >
     <image
       id="image0"
-      width="980"
-      height="600"
+      width="1000"
+      height="500"
       x="0"
       y="0"
       xlinkhref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA9QAAAJYCAIAAAAMsznEAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
