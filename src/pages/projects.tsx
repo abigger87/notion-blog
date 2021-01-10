@@ -66,9 +66,15 @@ export default ({ file }: { file: any }) => {
           </Heading>
           <ProjectCard
             title="HackSC 2021"
-            description="As Head Engineer, I helped build and direct my team to create an animation-based, responsive static website to drive interest and market HackSC 2021."
+            description="As Head Engineer, I build and direct my team to create an animation-based, responsive static website to drive interest and market HackSC 2021."
             href="https://2021.hacksc.com/"
             icon="hacksc"
+          />
+          <ProjectCard
+            title="CME Group 2020"
+            description="Worked on Platform Engineering (DevOps) to migrate legacy docker images from docker swarm to Kubernetes. Built a Groovy/Java Framework to create application repositories flushed with webhooks to trigger Jenkins Pipelines. The Framework automated the process of deploying an app into Kubernetes. Also, created a Groovy Framework to lint and validate Dockerfiles on the opening of a pull request."
+            href="https://cmegroup.com/"
+            icon="cmegroup"
           />
           <ProjectCard
             title="HackSC 2020"

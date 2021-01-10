@@ -57,8 +57,9 @@ const ProjectCard = ({
           aria-label="LinkedIn"
           name={icon}
           color={iconColor[colorMode]}
-          size="32px"
-          ml={2}
+          // size="32px"
+          h={6}
+          w={12}
           mr={4}
         />
         <Stack>
