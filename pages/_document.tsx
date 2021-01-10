@@ -31,10 +31,10 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/*<script
+          <script
             src="https://unpkg.com/website-carbon-badges@^1/b.min.js"
             defer
-          ></script>*/}
+          ></script>
           {typeof window !== 'undefined' ? (
             <script type="text/javascript" src="/carbon.js" defer></script>
           ) : (
