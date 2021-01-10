@@ -169,6 +169,18 @@ export default ({ titlePre = '' }) => {
           content="images/icons/ms-icon-144x144.png"
         />
       </Head>
+      <div
+        id="wcb"
+        className={`wcb carbonbadge ${colorMode === 'light' ? '' : 'wcb-d'}`}
+        style={{
+          display: 'flex',
+          margin: 'auto',
+          position: 'absolute',
+          top: '0',
+          right: '0',
+          padding: '.75rem',
+        }}
+      ></div>
       <StickyNav
         flexDirection="row"
         justifyContent="space-between"

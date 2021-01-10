@@ -23,6 +23,9 @@ const prismBaseTheme = css`
     hyphens: none;
     width: 100%;
   }
+  bold-font {
+    font-weight: bold;
+  }
   /* Code blocks */
   pre[class*='language-'] {
     padding-top: ${theme.space[4]};

@@ -3,6 +3,7 @@
 import ExtLink from '../components/ext-link'
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
+import { GlobalStyles as TinaStyles } from '@tinacms/styles'
 import {
   useGithubEditing,
   GithubClient,
@@ -98,7 +99,8 @@ export default class Site extends App {
       <ThemeProvider theme={theme}>
         <ColorModeProvider value="light">
           <GlobalStyle>
-            <TinaProvider cms={this.cms}>
+            <TinaProvider cms={this.cms} styled={false}>
+              <TinaStyles />
               <TinacmsGithubProvider
                 editMode={pageProps.preview}
                 enterEditMode={enterEditMode}

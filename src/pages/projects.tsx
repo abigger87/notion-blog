@@ -78,9 +78,15 @@ export default ({ file }: { file: any }) => {
           />
           <ProjectCard
             title="HackSC 2020"
-            description="As a member of the engineering team, I contributed to the static HackSC 2020 website."
+            description="As a member of the engineering team, I built the HackSC static landing page as well as lay the infrastructure for the fullstack Node.js, Express, MySQL, Next.js application to provide a dashboard for hackers, judges, sponsors, volunteers, and admin."
             href="https://2020.hacksc.com/"
             icon="hacksc"
+          />
+          <ProjectCard
+            title="District 2 Capital Fund, LP"
+            description="Developed investment fund’s web dashboard using MongoDB, Express, React, and Node.js to screen, retrieve, and collect SEC filing data of public companies of interest. I also built D2C's static website at https://district2capital.com"
+            href="https://district2capital.com/"
+            icon="d2c"
           />
           <ProjectCard
             title="Spatial Computing Lab"
@@ -91,7 +97,7 @@ export default ({ file }: { file: any }) => {
           />
           <ProjectCard
             title="HackSC 2019"
-            description="As a team member of Hacker Experience, I built relationships between our team and sponsors as well as perform a massive campaign, garnering over 15 CEOs to attend, speak, and judge at our event."
+            description="As part of Hacker Experience, I built relationships between our team and sponsors as well as perform a massive outreach campaign, garnering over 15 CEOs to attend, speak, and judge at our event."
             href="https://2019.hacksc.com/"
             icon="hacksc"
           />
