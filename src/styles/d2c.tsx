@@ -15,8 +15,8 @@ const D2C = (
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
-    width="946.000000pt"
-    height="492.000000pt"
+    width="450"
+    height="450"
     viewBox="0 0 946.000000 492.000000"
     preserveAspectRatio="xMidYMid meet"
   >
