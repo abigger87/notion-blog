@@ -1,5 +1,4 @@
-import cmegroup from '../static/cmegroup.png'
-// var cmegroup = require('../../public/cmegroup.png')
+import cmegroup from '@static/cmegroup.png'
 
 const CMEGroup = <img src={cmegroup} alt="CME Group" />
 
