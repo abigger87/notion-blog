@@ -14,7 +14,7 @@ interface color {
   toggleColorMode: any
 }
 
-export default function Home({ file }: { file: any }) {
+const Home = ({ file }: { file: any }) => {
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -57,6 +57,8 @@ export default function Home({ file }: { file: any }) {
     </>
   )
 }
+
+export default Home
 
 /**
  * Fetch data with getStaticProps based on 'preview' mode

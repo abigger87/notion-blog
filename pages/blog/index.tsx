@@ -31,7 +31,7 @@ interface color {
   toggleColorMode: any
 }
 
-export default ({
+const Blog = ({
   posts = [],
   preview,
   file,
@@ -254,3 +254,5 @@ export const getStaticProps: GetStaticProps = async function({
     },
   }
 }
+
+export default Blog
