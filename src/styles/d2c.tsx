@@ -1,17 +1,4 @@
 const D2C = (
-  //   <svg
-  //     version="1.0"
-  //     xmlns="http://www.w3.org/2000/svg"
-  //     width="1000"
-  //     height="500"
-  //     viewBox="0 0 600 300"
-  //     preserveAspectRatio="xMidYMid meet"
-  //   >
-  //     <g
-  //       transform="translate(-180.000000,350.000000) scale(0.300000,-0.300000)"
-  //       fill="#000000"
-  //       stroke="none"
-  //     >
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
