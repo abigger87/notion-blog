@@ -80,7 +80,7 @@ if (!self.define) {
     })
   }
 }
-define('./sw.js', ['./workbox-b90066a8'], function(workbox) {
+define('./sw.js', ['./workbox-32092201'], function(workbox) {
   'use strict'
 
   /**
@@ -96,41 +96,15 @@ define('./sw.js', ['./workbox-b90066a8'], function(workbox) {
    */
 
   importScripts()
-  workbox.skipWaiting()
+  self.skipWaiting()
   workbox.clientsClaim()
-  /**
-   * The precacheAndRoute() method efficiently caches and responds to
-   * requests for URLs in the manifest.
-   * See https://goo.gl/S9QRab
-   */
-
-  workbox.precacheAndRoute(
-    [
-      {
-        url: '/_next/static/runtime/amp.js',
-        revision: '2fdd189ea17faa56a4f44a2fdd88b84f',
-      },
-      {
-        url: '/_next/static/runtime/main.js',
-        revision: '2af70012a12863899bb0cee34fc076fe',
-      },
-      {
-        url: '/_next/static/runtime/polyfills.js',
-        revision: '516c3d4deeff70783126396a5a14d34e',
-      },
-      {
-        url: '/_next/static/runtime/react-refresh.js',
-        revision: '9d11ea7095b60a828f2db49ed1004ade',
-      },
-      {
-        url: '/_next/static/runtime/webpack.js',
-        revision: '3535ab2c245aa9364950947bd836af96',
-      },
-    ],
-    {
-      ignoreURLParametersMatching: [/ts/],
-    }
+  workbox.registerRoute(
+    /.*/i,
+    new workbox.NetworkOnly({
+      cacheName: 'dev',
+      plugins: [],
+    }),
+    'GET'
   )
-  workbox.cleanupOutdatedCaches()
 })
 //# sourceMappingURL=sw.js.map

@@ -36,14 +36,15 @@
     "github-slugger": "^1.2.1",
     "googleapis": "^51.0.0",
     "jquery": "3.5.0",
-    "next": "^9.3.2",
+    "next": "^10.0.5",
     "next-images": "^1.6.2",
-    "next-pwa": "^2.4.1",
+    "next-pwa": "^5.0.2",
     "next-seo": "^4.5.0",
     "next-tinacms-github": "^0.1.0",
     "node-fetch": "^2.6.0",
     "prismjs": "^1.17.1",
     "react": "16.12.0",
+    "react-carbonbadge": "^1.0.1",
     "react-dom": "16.12.0",
     "react-github-calendar": "^1.0.4",
     "react-hotjar": "^2.2.0",
@@ -54,7 +55,7 @@
     "tinacms": "^0.19.1",
     "url-loader": "^4.1.1",
     "uuid": "^8.1.0",
-    "webpack": "^5.12.2"
+    "webpack": "^4.44.2"
   },
   "devDependencies": {
     "@types/node": "^14.0.5",

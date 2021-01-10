@@ -1,6 +1,0 @@
-export { default as CodingLanguages } from './CodingLanguages'
-export { default as ThirtyDayChart } from './ThirtyDayChart'
-export { default as GitHub } from './github'
-export { default as Twitter } from './twitter'
-export { default as Envelope } from './envelope'
-export { default as LinkedIn } from './linkedin'
