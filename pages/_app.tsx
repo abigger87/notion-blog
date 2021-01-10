@@ -1,4 +1,3 @@
-// @ts-nocheck
 //import '../styles/global.css'
 import ExtLink from '../components/Extlink'
 import App from 'next/app'
@@ -99,7 +98,7 @@ export default class Site extends App {
       <ThemeProvider theme={theme}>
         <ColorModeProvider value="light">
           <GlobalStyle>
-            <TinaProvider cms={this.cms} styled={false}>
+            <TinaProvider cms={this.cms}>
               <TinaStyles />
               <TinacmsGithubProvider
                 editMode={pageProps.preview}
@@ -143,7 +142,7 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
       variant="outline"
       as="a"
       p={[1, 4]}
-      style={{ padding: '.75rem', margin: '.75rem', zIndex: '999' }}
+      style={{ padding: '.75rem', margin: '.75rem', zIndex: 4 }}
       onClick={editMode ? github.exitEditMode : github.enterEditMode}
     >
       {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
