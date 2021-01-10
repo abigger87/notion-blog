@@ -1,6 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
-import Header from '../components/header'
+import Header from '../components/Header'
 import {
   useColorMode,
   Heading,

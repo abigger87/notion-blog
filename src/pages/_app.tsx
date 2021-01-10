@@ -1,6 +1,6 @@
 // @ts-nocheck
 //import '../styles/global.css'
-import ExtLink from '../components/ext-link'
+import ExtLink from '../components/Extlink'
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import { GlobalStyles as TinaStyles } from '@tinacms/styles'

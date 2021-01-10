@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Header from '../components/header'
+import Header from '../components/Header'
 //import sharedStyles from '../styles/shared.module.css'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
