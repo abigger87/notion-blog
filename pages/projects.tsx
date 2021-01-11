@@ -9,7 +9,7 @@ import {
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
 
-export default ({ file }: { file: any }) => {
+const Projects = ({ file }: { file: any }) => {
   const { colorMode } = useColorMode()
   const secondaryTextColor = {
     light: 'gray.700',
@@ -61,7 +61,7 @@ export default ({ file }: { file: any }) => {
           alignItems="flex-start"
           maxWidth="700px"
         >
-          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
+          <Heading letterSpacing="tight" mb={8} size="xl" fontWeight={700}>
             Projects
           </Heading>
           <ProjectCard
@@ -140,3 +140,5 @@ export const getStaticProps: GetStaticProps = async function({
     },
   }
 }
+
+export default Projects

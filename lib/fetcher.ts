@@ -1,4 +1,4 @@
-export default async (...args: any) => {
+const Fetcher = async (...args: any) => {
   let url = args?.length > 0 ? args[0] : ''
   let link = url
 
@@ -17,3 +17,5 @@ export default async (...args: any) => {
 
   return res.json()
 }
+
+export default Fetcher
