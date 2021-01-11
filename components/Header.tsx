@@ -53,7 +53,7 @@ const Header = ({ titlePre = '' }) => {
           $q('wcb_2').insertAdjacentHTML(
             // @ts-ignore
             'beforeEnd',
-            'Cleaner than ' + e.p + '% of pages tested'
+            ''
           )
       },
       css =

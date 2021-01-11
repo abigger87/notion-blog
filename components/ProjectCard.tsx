@@ -41,9 +41,11 @@ const ProjectCard = ({
       href={href}
       title={title}
       isExternal
+      style={{ transition: 'all .2s ease-in-out' }}
       _hover={{
         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
         textDecoration: 'none',
+        transform: 'scale(1.04)',
       }}
     >
       <Flex
