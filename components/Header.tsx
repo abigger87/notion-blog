@@ -12,6 +12,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },
   { label: 'Dashboard', page: '/dashboard' },
   { label: 'Blog', page: '/blog' },
+  { label: 'NFTs', page: '/nfts' },
   { label: 'Projects', page: '/projects' },
   { label: 'About', page: '/about' },
   { label: 'Code', link: 'https://github.com/abigger87/notion-blog' },
